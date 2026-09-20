@@ -111,9 +111,6 @@
                     <a href="{{ route('special-requests.create') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('special-requests.*') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
                         Special Request
                     </a>
-                    <a href="{{ route('reviews.index') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('reviews.*') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
-                        Reviews
-                    </a>
                     <a href="{{ route('about') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('about') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
                         Our Story
                     </a>

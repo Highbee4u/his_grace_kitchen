@@ -327,9 +327,43 @@
         </div>
     </section>
 
-    <!-- Testimonials & Customer Reviews -->
-    <section class="py-16 bg-white" x-data="{ reviewModalOpen: false, rating: 5, hoverRating: 5 }">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <!-- Testimonials & Customer Reviews (Auto-scrolling Carousel in groups of 3) -->
+    <section 
+        class="py-16 bg-white overflow-hidden" 
+        x-data="{ 
+            reviewModalOpen: false, 
+            rating: 5, 
+            hoverRating: 5,
+            activeSlide: 0,
+            totalSlides: {{ max(1, isset($reviewChunks) ? $reviewChunks->count() : 1) }},
+            isPaused: false,
+            timer: null,
+            next() {
+                this.activeSlide = (this.activeSlide + 1) % this.totalSlides;
+            },
+            prev() {
+                this.activeSlide = (this.activeSlide - 1 + this.totalSlides) % this.totalSlides;
+            },
+            goTo(index) {
+                this.activeSlide = index;
+            },
+            start() {
+                this.stop();
+                this.timer = setInterval(() => {
+                    if (!this.isPaused && this.totalSlides > 1) {
+                        this.next();
+                    }
+                }, 5000);
+            },
+            stop() {
+                if (this.timer) clearInterval(this.timer);
+            }
+        }"
+        x-init="start()"
+        @mouseenter="isPaused = true"
+        @mouseleave="isPaused = false"
+    >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div class="space-y-2">
                     <span class="text-xs uppercase font-extrabold tracking-widest text-[#0D4A2B]">Verified Reviews</span>
@@ -359,47 +393,102 @@
                 </div>
             @endif
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @if (isset($dbReviews) && $dbReviews->isNotEmpty())
-                    @foreach ($dbReviews as $review)
-                        <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200/80 space-y-4 shadow-xs flex flex-col justify-between hover:border-amber-400/50 transition-all">
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <div class="text-amber-500 font-bold text-sm tracking-wider">
-                                        {{ $review->stars }}
-                                    </div>
-                                    @if ($review->is_verified_buyer)
-                                        <span class="text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
-                                            ✓ Verified Buyer
-                                        </span>
+            <!-- Carousel Sliding Track Container (Single row of 3 cards per view) -->
+            <div class="relative w-full overflow-hidden">
+                <div 
+                    class="flex transition-transform duration-700 ease-in-out"
+                    :style="'transform: translateX(-' + (activeSlide * 100) + '%)'"
+                >
+                    @if (isset($reviewChunks))
+                        @foreach ($reviewChunks as $chunkIndex => $chunk)
+                            <div class="w-full shrink-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                @foreach ($chunk as $review)
+                                    @if (is_object($review))
+                                        <div class="bg-stone-50 rounded-3xl p-6 border border-stone-200/80 space-y-4 shadow-xs flex flex-col justify-between hover:border-amber-400/50 hover:shadow-md transition-all h-full">
+                                            <div class="space-y-3">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="text-amber-500 font-bold text-sm tracking-wider">
+                                                        {{ $review->stars }}
+                                                    </div>
+                                                    @if ($review->is_verified_buyer)
+                                                        <span class="text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                                                            ✓ Verified Buyer
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                                @if ($review->title)
+                                                    <h4 class="font-serif font-bold text-stone-900 text-sm line-clamp-1">"{{ $review->title }}"</h4>
+                                                @endif
+                                                <p class="text-stone-700 text-xs sm:text-sm italic leading-relaxed line-clamp-4">"{{ $review->comment }}"</p>
+                                            </div>
+                                            <div class="pt-3 border-t border-stone-200/60 flex items-center justify-between text-xs">
+                                                <div>
+                                                    <span class="font-bold text-stone-900 block">{{ $review->customer_name }}</span>
+                                                    <span class="text-stone-500 text-[11px]">{{ $review->customer_location ? $review->customer_location . ' • ' : '' }}{{ $review->dish_title }}</span>
+                                                </div>
+                                                <span class="text-[10px] text-stone-400">{{ $review->created_at->diffForHumans() }}</span>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="bg-stone-50 rounded-3xl p-6 border border-stone-200/80 space-y-4 shadow-xs flex flex-col justify-between hover:border-amber-400/50 hover:shadow-md transition-all h-full">
+                                            <div class="space-y-3">
+                                                <div class="flex text-amber-500 text-sm font-bold">★★★★★</div>
+                                                <p class="text-stone-700 text-xs sm:text-sm italic leading-relaxed line-clamp-4">"{{ $review['comment'] }}"</p>
+                                            </div>
+                                            <div class="pt-3 border-t border-stone-200/60 flex items-center justify-between text-xs">
+                                                <div>
+                                                    <span class="font-bold text-stone-900 block">{{ $review['name'] }}</span>
+                                                    <span class="text-xs text-stone-500">{{ $review['location'] }} • {{ $review['dish'] }}</span>
+                                                </div>
+                                                <span class="text-[10px] text-emerald-700 font-bold">Verified</span>
+                                            </div>
+                                        </div>
                                     @endif
-                                </div>
-                                @if ($review->title)
-                                    <h4 class="font-serif font-bold text-stone-900 text-sm">"{{ $review->title }}"</h4>
-                                @endif
-                                <p class="text-stone-700 text-xs sm:text-sm italic leading-relaxed">"{{ $review->comment }}"</p>
+                                @endforeach
                             </div>
-                            <div class="pt-2 border-t border-stone-200/60 flex items-center justify-between text-xs">
-                                <div>
-                                    <span class="font-bold text-stone-900 block">{{ $review->customer_name }}</span>
-                                    <span class="text-stone-500 text-[11px]">{{ $review->customer_location ? $review->customer_location . ' • ' : '' }}{{ $review->dish_title }}</span>
-                                </div>
-                                <span class="text-[10px] text-stone-400">{{ $review->created_at->diffForHumans() }}</span>
-                            </div>
-                        </div>
-                    @endforeach
-                @elseif (!empty($testimonials))
-                    @foreach ($testimonials as $t)
-                        <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200/80 space-y-4 shadow-xs">
-                            <div class="flex text-amber-500 text-sm">★★★★★</div>
-                            <p class="text-stone-700 text-sm italic leading-relaxed">"{{ $t['comment'] }}"</p>
-                            <div class="pt-2 border-t border-stone-200/60">
-                                <span class="font-bold text-stone-900 text-sm block">{{ $t['name'] }}</span>
-                                <span class="text-xs text-stone-500">{{ $t['location'] }} • {{ $t['dish'] }}</span>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <!-- Carousel Navigator (Arrows & Indicator Dots) -->
+            <div class="flex items-center justify-center gap-4 pt-2">
+                <!-- Prev Button -->
+                <button 
+                    type="button" 
+                    @click="prev()"
+                    class="w-9 h-9 rounded-full bg-stone-100 hover:bg-[#0D4A2B] hover:text-white text-stone-700 flex items-center justify-center transition-all shadow-xs cursor-pointer"
+                    aria-label="Previous reviews"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+
+                <!-- Indicator Dots -->
+                <div class="flex items-center gap-2">
+                    <template x-for="(chunk, idx) in totalSlides" :key="idx">
+                        <button 
+                            type="button"
+                            @click="goTo(idx)"
+                            class="h-2 rounded-full transition-all duration-300 cursor-pointer"
+                            :class="activeSlide === idx ? 'w-8 bg-[#0D4A2B]' : 'w-2 bg-stone-300 hover:bg-stone-400'"
+                            :aria-label="'Go to review slide ' + (idx + 1)"
+                        ></button>
+                    </template>
+                </div>
+
+                <!-- Next Button -->
+                <button 
+                    type="button" 
+                    @click="next()"
+                    class="w-9 h-9 rounded-full bg-stone-100 hover:bg-[#0D4A2B] hover:text-white text-stone-700 flex items-center justify-center transition-all shadow-xs cursor-pointer"
+                    aria-label="Next reviews"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
         </div>
 
