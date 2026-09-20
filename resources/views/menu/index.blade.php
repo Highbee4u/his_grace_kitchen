@@ -134,7 +134,7 @@
                                 </span>
                             @endif
                         </div>
-                        <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-amber-300 text-xs font-black px-2.5 py-1 rounded-full">
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-amber-300 text-xs font-black px-2.5 py-1 rounded-full" x-text="$store.currency.format({{ $dish->price_minor }})">
                             {{ $dish->formatted_price }}
                         </span>
                     </div>

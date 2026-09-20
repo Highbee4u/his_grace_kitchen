@@ -86,7 +86,7 @@
                                     <span class="bg-amber-500 text-stone-950 text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
                                         Signature Dish
                                     </span>
-                                    <span class="text-amber-400 text-sm font-bold">₦4,500</span>
+                                    <span class="text-amber-400 text-sm font-bold" x-text="$store.currency.format(450000)">₦4,500</span>
                                 </div>
                                 <h3 class="font-serif text-2xl font-bold text-white">Smoky Wood-Fired Party Jollof</h3>
                                 <p class="text-stone-300 text-xs line-clamp-2">Woodsmoke reduction with tatashe, scotch bonnet peppers, sweet dodo, and your choice of protein.</p>
@@ -196,7 +196,7 @@
                                 @endif
                             </div>
 
-                            <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-amber-300 text-xs font-black px-2.5 py-1 rounded-full">
+                            <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-amber-300 text-xs font-black px-2.5 py-1 rounded-full" x-text="$store.currency.format({{ $dish->price_minor }})">
                                 {{ $dish->formatted_price }}
                             </span>
                         </div>
@@ -260,7 +260,7 @@
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <h3 class="font-serif text-xl font-bold text-white">{{ $combo->name }}</h3>
-                                    <span class="text-amber-400 font-extrabold text-lg">{{ $combo->formatted_price }}</span>
+                                    <span class="text-amber-400 font-extrabold text-lg" x-text="$store.currency.format({{ $combo->price_minor }})">{{ $combo->formatted_price }}</span>
                                 </div>
                                 <p class="text-stone-400 text-xs leading-relaxed">{{ $combo->description }}</p>
 

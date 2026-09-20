@@ -358,4 +358,32 @@ class CheckoutTest extends TestCase
             ->assertSee('Zenith Bank')
             ->assertSee('0123456789');
     }
+
+    public function test_checkout_respects_selected_currency(): void
+    {
+        $payload = [
+            'customer_name' => 'Diaspora Customer',
+            'customer_email' => 'diaspora@example.com',
+            'customer_phone' => '+447911123456',
+            'fulfilment_type' => 'pickup',
+            'payment_method' => 'bank_transfer',
+            'currency' => 'GBP',
+            'cart_items' => json_encode([
+                [
+                    'id' => $this->jollofItem->id,
+                    'name' => $this->jollofItem->name,
+                    'price' => $this->jollofItem->price_minor,
+                    'quantity' => 1,
+                ],
+            ]),
+        ];
+
+        $response = $this->post(route('checkout.store'), $payload);
+
+        $response->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('orders', [
+            'customer_email' => 'diaspora@example.com',
+            'currency' => 'GBP',
+        ]);
+    }
 }

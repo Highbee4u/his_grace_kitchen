@@ -21,7 +21,7 @@
             return ($store.cart.subtotalMinor || 0) + this.deliveryFeeMinor;
         },
         formatMoney(minor) {
-            return '₦' + ((minor || 0) / 100).toLocaleString('en-US', { minimumFractionDigits: 2 });
+            return this.$store.currency.format(minor || 0);
         },
         allowPod() {
             if (this.fulfilmentType === 'pickup') return true;
@@ -91,6 +91,7 @@
 
                 <!-- Hidden Cart Payload Input synchronized with Alpine -->
                 <input type="hidden" name="cart_items" :value="JSON.stringify($store.cart.items)">
+                <input type="hidden" name="currency" :value="$store.currency.selected">
 
                 <!-- Left Column: Checkout Details Form (7 cols) -->
                 <div class="lg:col-span-7 space-y-8">

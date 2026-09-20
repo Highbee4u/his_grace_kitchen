@@ -52,6 +52,7 @@ class CheckoutController extends Controller
             'delivery_instructions' => ['nullable', 'string', 'max:500'],
             'scheduled_for' => ['nullable', 'date', 'after_or_equal:today'],
             'payment_method' => ['required', 'in:paystack,stripe,bank_transfer,pay_on_delivery'],
+            'currency' => ['nullable', 'string', 'in:NGN,GBP,USD,CAD,EUR'],
             'cart_items' => ['required'],
             'notes' => ['nullable', 'string', 'max:1000'],
         ]);
@@ -157,7 +158,7 @@ class CheckoutController extends Controller
                 'discount_minor' => 0,
                 'tax_minor' => 0,
                 'total_minor' => $totalMinor,
-                'currency' => 'NGN',
+                'currency' => $validated['currency'] ?? 'NGN',
                 'notes' => $validated['notes'] ?? null,
             ]);
 

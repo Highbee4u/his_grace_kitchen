@@ -255,7 +255,7 @@
                                         <div class="flex-1 min-w-0">
                                             <h4 class="font-bold text-stone-900 text-sm truncate" x-text="item.name"></h4>
                                             <p x-show="item.variant" class="text-xs text-amber-700 font-medium" x-text="item.variant"></p>
-                                            <p class="text-xs font-bold text-stone-800 mt-1" x-text="'₦' + ((item.price * item.quantity) / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })"></p>
+                                            <p class="text-xs font-bold text-stone-800 mt-1" x-text="$store.currency.format(item.price * item.quantity)"></p>
                                         </div>
                                         <div class="flex items-center gap-2">
                                             <button 

@@ -1,11 +1,16 @@
 <?php
 
 use App\Http\Controllers\CateringController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ComboController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SpecialRequestController;
+use App\Http\Controllers\WebhookController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 // Public Storefront Routes
@@ -29,28 +34,28 @@ Route::view('/contact', 'contact')->name('contact');
 Route::get('/sitemap.xml', function () {
     $path = public_path('sitemap.xml');
     if (! file_exists($path)) {
-        \Illuminate\Support\Facades\Artisan::call('sitemap:generate');
+        Artisan::call('sitemap:generate');
     }
 
     return response(file_get_contents($path), 200, ['Content-Type' => 'application/xml']);
 })->name('sitemap');
 
 // Checkout & Orders
-Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
-Route::post('/checkout', [\App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store')->middleware('throttle:20,1');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store')->middleware('throttle:20,1');
 
-Route::get('/orders/{order_number}', [\App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
-Route::get('/orders/{order_number}/invoice', [\App\Http\Controllers\InvoiceController::class, 'orderInvoice'])->name('orders.invoice');
-Route::get('/orders/{order_number}/bank-transfer', [\App\Http\Controllers\OrderController::class, 'bankTransfer'])->name('orders.bank-transfer');
-Route::match(['get', 'post'], '/track-order', [\App\Http\Controllers\OrderController::class, 'track'])->name('orders.track')->middleware('throttle:60,1');
+Route::get('/orders/{order_number}', [OrderController::class, 'show'])->name('orders.show');
+Route::get('/orders/{order_number}/invoice', [InvoiceController::class, 'orderInvoice'])->name('orders.invoice');
+Route::get('/orders/{order_number}/bank-transfer', [OrderController::class, 'bankTransfer'])->name('orders.bank-transfer');
+Route::match(['get', 'post'], '/track-order', [OrderController::class, 'track'])->name('orders.track')->middleware('throttle:60,1');
 
 // Invoices (PDF Download & Stream)
-Route::get('/invoices/{number}/download', [\App\Http\Controllers\InvoiceController::class, 'download'])->name('invoices.download');
-Route::get('/invoices/{number}/stream', [\App\Http\Controllers\InvoiceController::class, 'stream'])->name('invoices.stream');
+Route::get('/invoices/{number}/download', [InvoiceController::class, 'download'])->name('invoices.download');
+Route::get('/invoices/{number}/stream', [InvoiceController::class, 'stream'])->name('invoices.stream');
 
 // Payment Webhooks
-Route::post('/webhooks/paystack', [\App\Http\Controllers\WebhookController::class, 'handlePaystack'])->name('webhooks.paystack');
-Route::post('/webhooks/stripe', [\App\Http\Controllers\WebhookController::class, 'handleStripe'])->name('webhooks.stripe');
+Route::post('/webhooks/paystack', [WebhookController::class, 'handlePaystack'])->name('webhooks.paystack');
+Route::post('/webhooks/stripe', [WebhookController::class, 'handleStripe'])->name('webhooks.stripe');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

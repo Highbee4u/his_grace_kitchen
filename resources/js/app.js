@@ -2,6 +2,44 @@ import './bootstrap';
 
 import Alpine from 'alpinejs';
 
+Alpine.store('currency', {
+    selected: localStorage.getItem('nk_currency') || 'NGN',
+    rates: {
+        NGN: 1,
+        GBP: 0.00055,
+        USD: 0.00067,
+        CAD: 0.00091,
+        EUR: 0.00062
+    },
+    symbols: {
+        NGN: '₦',
+        GBP: '£',
+        USD: '$',
+        CAD: 'CA$',
+        EUR: '€'
+    },
+    setCurrency(curr) {
+        this.selected = curr;
+        localStorage.setItem('nk_currency', curr);
+        window.dispatchEvent(new CustomEvent('currency-changed', { detail: { currency: curr } }));
+    },
+    format(minorAmount) {
+        if (minorAmount === null || minorAmount === undefined || isNaN(minorAmount)) {
+            return '';
+        }
+        const curr = this.selected || 'NGN';
+        const rate = this.rates[curr] || 1;
+        const symbol = this.symbols[curr] || '₦';
+
+        const convertedMajor = (Number(minorAmount) / 100) * rate;
+
+        return symbol + Number(convertedMajor).toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+});
+
 Alpine.store('cart', {
     items: JSON.parse(localStorage.getItem('nk_cart') || '[]'),
     isOpen: false,
@@ -14,7 +52,7 @@ Alpine.store('cart', {
             this.items.push({
                 id: item.id,
                 name: item.name,
-                price: item.price,
+                price: Number(item.price),
                 currency: item.currency || 'NGN',
                 image: item.image,
                 variant: item.variant || null,
@@ -53,33 +91,15 @@ Alpine.store('cart', {
     },
 
     get subtotal() {
-        return this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        return this.items.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
+    },
+
+    get subtotalMinor() {
+        return this.subtotal;
     },
 
     get formattedSubtotal() {
-        return '₦' + (this.subtotal / 100).toLocaleString('en-US', { minimumFractionDigits: 2 });
-    }
-});
-
-Alpine.store('currency', {
-    selected: localStorage.getItem('nk_currency') || 'NGN',
-    rates: {
-        NGN: 1,
-        GBP: 0.00055,
-        USD: 0.00067,
-        CAD: 0.00091,
-        EUR: 0.00062
-    },
-    symbols: {
-        NGN: '₦',
-        GBP: '£',
-        USD: '$',
-        CAD: 'CA$',
-        EUR: '€'
-    },
-    setCurrency(curr) {
-        this.selected = curr;
-        localStorage.setItem('nk_currency', curr);
+        return Alpine.store('currency').format(this.subtotal);
     }
 });
 

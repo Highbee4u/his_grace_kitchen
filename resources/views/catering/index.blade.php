@@ -105,7 +105,7 @@
                                         {{ $package->pricing_model === 'per_head' ? 'Per Guest Estimate' : 'Fixed Package Total' }}
                                     </span>
                                     <div class="flex items-baseline gap-1">
-                                        <span class="text-2xl sm:text-3xl font-serif font-extrabold">{{ $package->formatted_price }}</span>
+                                        <span class="text-2xl sm:text-3xl font-serif font-extrabold" x-text="$store.currency.format({{ $package->price_minor }})">{{ $package->formatted_price }}</span>
                                         @if($package->pricing_model === 'per_head')
                                             <span class="text-xs text-stone-300 font-medium">/ guest</span>
                                         @endif

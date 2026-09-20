@@ -44,7 +44,7 @@
             },
 
             get formattedTotal() {
-                return '₦' + ((this.unitPrice * this.quantity) / 100).toLocaleString('en-US', { minimumFractionDigits: 2 });
+                return Alpine.store('currency').format(this.unitPrice * this.quantity);
             },
 
             toggleAddOn(name, price) {
@@ -146,7 +146,7 @@
                                         >
                                         <span>{{ $variant->name }}</span>
                                     </div>
-                                    <span class="text-stone-500 font-normal">
+                                    <span class="text-stone-500 font-normal" x-text="{{ $variant->price_minor > 0 ? '\'+\' + $store.currency.format(' . $variant->price_minor . ')' : '\'Included\'' }}">
                                         {{ $variant->price_minor > 0 ? '+'.\App\Support\Money::format($variant->price_minor, $variant->currency) : 'Included' }}
                                     </span>
                                 </label>
@@ -172,7 +172,7 @@
                                         >
                                         <span class="text-stone-800 font-medium">{{ $addon->name }}</span>
                                     </div>
-                                    <span class="text-stone-600 font-bold">
+                                    <span class="text-stone-600 font-bold" x-text="'+' + $store.currency.format({{ $addon->price_minor }})">
                                         +{{ \App\Support\Money::format($addon->price_minor, $addon->currency) }}
                                     </span>
                                 </label>
@@ -232,7 +232,7 @@
                         <img src="{{ $rel->image }}" alt="{{ $rel->name }}" class="w-20 h-20 rounded-xl object-cover shrink-0">
                         <div>
                             <h4 class="font-serif font-bold text-stone-900 group-hover:text-amber-600 transition-colors">{{ $rel->name }}</h4>
-                            <span class="text-xs font-bold text-[#0D4A2B] mt-1 block">{{ $rel->formatted_price }}</span>
+                            <span class="text-xs font-bold text-[#0D4A2B] mt-1 block" x-text="$store.currency.format({{ $rel->price_minor }})">{{ $rel->formatted_price }}</span>
                         </div>
                     </a>
                 @endforeach

@@ -49,7 +49,7 @@
                             <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
                                 <div>
                                     <span class="text-xs uppercase font-bold tracking-widest text-amber-400 block mb-0.5">Bundle Price</span>
-                                    <span class="text-2xl sm:text-3xl font-serif font-extrabold">{{ $combo->formatted_price }}</span>
+                                    <span class="text-2xl sm:text-3xl font-serif font-extrabold" x-text="$store.currency.format({{ $combo->price_minor }})">{{ $combo->formatted_price }}</span>
                                 </div>
                                 <span class="bg-amber-500 text-stone-950 text-xs font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md">
                                     Full Feast
