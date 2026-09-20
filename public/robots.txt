@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /checkout
+Disallow: /orders/
+Disallow: /invoices/
+Disallow: /profile
+Disallow: /dashboard
+Disallow: /webhooks/
+
+Sitemap: https://africankitchen.test/sitemap.xml
