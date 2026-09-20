@@ -84,7 +84,7 @@ class DemoDataSeeder extends Seeder
             Payment::create([
                 'order_id' => $order1->id,
                 'gateway' => 'paystack',
-                'reference' => 'pstk_ref_' . uniqid(),
+                'reference' => 'pstk_ref_'.uniqid(),
                 'status' => 'success',
                 'amount_minor' => 1600000,
                 'currency' => 'NGN',
@@ -143,7 +143,7 @@ class DemoDataSeeder extends Seeder
             Payment::create([
                 'order_id' => $order2->id,
                 'gateway' => 'stripe',
-                'reference' => 'pi_stripe_' . uniqid(),
+                'reference' => 'pi_stripe_'.uniqid(),
                 'status' => 'success',
                 'amount_minor' => 11000,
                 'currency' => 'GBP',
@@ -192,7 +192,7 @@ class DemoDataSeeder extends Seeder
             Payment::create([
                 'order_id' => $order3->id,
                 'gateway' => 'bank_transfer',
-                'reference' => 'TRF-' . strtoupper(uniqid()),
+                'reference' => 'TRF-'.strtoupper(uniqid()),
                 'status' => 'success',
                 'amount_minor' => 1100000,
                 'currency' => 'NGN',
@@ -296,4 +296,3 @@ class DemoDataSeeder extends Seeder
         );
     }
 }
-

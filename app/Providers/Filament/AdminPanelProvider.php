@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\SiteSetting;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,7 +28,13 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName('Nigerian Kitchen Admin')
+            ->brandName(function () {
+                try {
+                    return SiteSetting::getSiteName().' Admin';
+                } catch (\Throwable) {
+                    return 'Kitchen Admin';
+                }
+            })
             ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Amber,

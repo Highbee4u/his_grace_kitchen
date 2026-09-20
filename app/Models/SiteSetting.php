@@ -16,8 +16,36 @@ class SiteSetting extends Model
 
     protected static function booted(): void
     {
-        static::saved(fn ($setting) => Cache::forget("site_setting:{$setting->key}"));
-        static::deleted(fn ($setting) => Cache::forget("site_setting:{$setting->key}"));
+        static::saved(function ($setting) {
+            Cache::forget("site_setting:{$setting->key}");
+            Cache::forget('site_setting:site_name');
+            Cache::forget('site_setting:business_name');
+
+            // Synchronize site_name and business_name if either is updated
+            if ($setting->key === 'site_name' && ! empty($setting->value)) {
+                static::withoutEvents(function () use ($setting) {
+                    static::updateOrCreate(
+                        ['key' => 'business_name'],
+                        ['value' => $setting->value, 'type' => 'string']
+                    );
+                });
+                Cache::forget('site_setting:business_name');
+            } elseif ($setting->key === 'business_name' && ! empty($setting->value)) {
+                static::withoutEvents(function () use ($setting) {
+                    static::updateOrCreate(
+                        ['key' => 'site_name'],
+                        ['value' => $setting->value, 'type' => 'string']
+                    );
+                });
+                Cache::forget('site_setting:site_name');
+            }
+        });
+
+        static::deleted(function ($setting) {
+            Cache::forget("site_setting:{$setting->key}");
+            Cache::forget('site_setting:site_name');
+            Cache::forget('site_setting:business_name');
+        });
     }
 
     /**
@@ -30,5 +58,15 @@ class SiteSetting extends Model
 
             return $setting ? $setting->value : $default;
         });
+    }
+
+    /**
+     * Retrieve current site/brand name.
+     */
+    public static function getSiteName(): string
+    {
+        return static::get('site_name')
+            ?? static::get('business_name')
+            ?? config('app.name', 'Nigerian Kitchen');
     }
 }

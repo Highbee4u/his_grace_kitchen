@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Nigerian Kitchen | Authentic Nigerian Cuisine & Diaspora Delivery')</title>
+    <title>@yield('title', ($siteName ?? 'Nigerian Kitchen') . ' | Authentic Nigerian Cuisine & Diaspora Delivery')</title>
     <meta name="description" content="@yield('meta_description', 'Handcrafted Nigerian culinary classics: Smoky Party Jollof, Egusi Soup, Tender Flame-Grilled Suya, and Owambe Event Catering. Fast delivery across Nigeria and express courier to the UK, US, Canada, and Europe.')">
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
     <!-- Open Graph & Social -->
-    <meta property="og:site_name" content="Nigerian Kitchen">
-    <meta property="og:title" content="@yield('title', 'Nigerian Kitchen | Authentic Nigerian Cuisine')">
+    <meta property="og:site_name" content="{{ $siteName ?? 'Nigerian Kitchen' }}">
+    <meta property="og:title" content="@yield('title', ($siteName ?? 'Nigerian Kitchen') . ' | Authentic Nigerian Cuisine')">
     <meta property="og:description" content="@yield('meta_description', 'Smoky Party Jollof, Rich Native Soups, and Authentic Grills delivered hot to your doorstep.')">
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="@yield('canonical', url()->current())">
@@ -20,7 +20,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('title', 'Nigerian Kitchen | Authentic Nigerian Cuisine')">
+    <meta name="twitter:title" content="@yield('title', ($siteName ?? 'Nigerian Kitchen') . ' | Authentic Nigerian Cuisine')">
     <meta name="twitter:description" content="@yield('meta_description', 'Smoky Party Jollof, Rich Native Soups, and Authentic Grills delivered hot to your doorstep.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/hero-jollof.jpg'))">
 
@@ -80,11 +80,13 @@
                 <!-- Brand Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-3 group">
                     <div class="w-11 h-11 rounded-full bg-[#0D4A2B] flex items-center justify-center text-amber-400 shadow-md group-hover:scale-105 transition-transform duration-200">
-                        <span class="font-serif text-2xl font-extrabold tracking-tighter">NK</span>
+                        <span class="font-serif text-lg font-extrabold tracking-tighter">
+                            {{ strtoupper(collect(explode(' ', $siteName ?? 'NK'))->map(fn($w) => substr($w, 0, 1))->take(2)->join('')) }}
+                        </span>
                     </div>
                     <div>
                         <span class="font-serif text-2xl font-bold tracking-tight text-stone-900 block leading-tight">
-                            Nigerian<span class="text-amber-600">Kitchen</span>
+                            {{ $siteName ?? 'Nigerian Kitchen' }}
                         </span>
                         <span class="text-[10px] uppercase font-bold tracking-widest text-[#0D4A2B] block">
                             Authentic Native Flavors
@@ -336,10 +338,10 @@
                 <!-- Brand Overview -->
                 <div class="lg:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-[#0D4A2B] flex items-center justify-center text-amber-400 font-serif text-xl font-extrabold">
-                            NK
+                        <div class="w-10 h-10 rounded-full bg-[#0D4A2B] flex items-center justify-center text-amber-400 font-serif text-base font-extrabold shadow-inner border border-white/10">
+                            {{ strtoupper(collect(explode(' ', $siteName ?? 'NK'))->map(fn($w) => substr($w, 0, 1))->take(2)->join('')) }}
                         </div>
-                        <span class="font-serif text-2xl font-bold text-white tracking-tight">Nigerian<span class="text-amber-500">Kitchen</span></span>
+                        <span class="font-serif text-2xl font-bold text-white tracking-tight">{{ $siteName ?? 'Nigerian Kitchen' }}</span>
                     </div>
                     <p class="text-stone-400 text-sm leading-relaxed max-w-sm">
                         Crafting authentic Nigerian gastronomic experiences with slow-simmered rich native soups, firewood-infused smoky jollof, and succulent charcoal grills. Serving food lovers locally and worldwide across the UK, USA, Canada, and Europe.
@@ -377,7 +379,7 @@
                 <div class="space-y-3">
                     <h3 class="text-white font-bold text-sm uppercase tracking-wider font-serif">Connect</h3>
                     <ul class="space-y-2 text-sm text-stone-400">
-                        <li>Email: <a href="mailto:hello@nigeriankitchen.test" class="text-amber-400 hover:underline">hello@example.com</a></li>
+                        <li>Email: <a href="mailto:{{ $contactEmail ?? 'orders@africankitchen.test' }}" class="text-amber-400 hover:underline">{{ $contactEmail ?? 'orders@africankitchen.test' }}</a></li>
                         <li>WhatsApp Orders: <span class="text-stone-300 font-semibold">{{ $whatsappNumber ?? '+234 800 000 0000' }}</span></li>
                         <li class="pt-2">
                             <a href="{{ url('/admin') }}" class="inline-flex items-center gap-1.5 text-xs bg-stone-800 hover:bg-stone-700 text-stone-300 px-3 py-1.5 rounded border border-stone-700">
@@ -393,7 +395,7 @@
 
             <!-- Bottom Copyright -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-                <p>&copy; {{ date('Y') }} Nigerian Kitchen. All rights reserved. Crafted with authentic passion.</p>
+                <p>&copy; {{ date('Y') }} {{ $siteName ?? 'Nigerian Kitchen' }}. All rights reserved. Crafted with authentic passion.</p>
                 <div class="flex items-center gap-4">
                     <span>Paystack (NGN)</span>
                     <span>•</span>

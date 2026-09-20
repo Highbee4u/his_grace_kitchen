@@ -12,10 +12,10 @@ class SeoHelper
      */
     public static function restaurantSchema(): array
     {
-        $siteName = SiteSetting::where('key', 'site_name')->value('value') ?? 'Nigerian Kitchen';
-        $phone = SiteSetting::where('key', 'phone')->value('value') ?? '+234 800 000 0000';
-        $email = SiteSetting::where('key', 'contact_email')->value('value') ?? 'orders@africankitchen.test';
-        $address = SiteSetting::where('key', 'address')->value('value') ?? '14 Admiralty Way, Lekki Phase 1, Lagos, Nigeria';
+        $siteName = SiteSetting::getSiteName();
+        $phone = SiteSetting::get('phone', '+234 800 000 0000');
+        $email = SiteSetting::get('contact_email', 'orders@africankitchen.test');
+        $address = SiteSetting::get('address', '14 Admiralty Way, Lekki Phase 1, Lagos, Nigeria');
 
         return [
             '@context' => 'https://schema.org',
