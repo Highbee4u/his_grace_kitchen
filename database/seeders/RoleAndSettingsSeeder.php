@@ -54,8 +54,8 @@ class RoleAndSettingsSeeder extends Seeder
 
         // 5. System Settings
         $settings = [
-            'business_name' => 'Nigerian Kitchen',
-            'site_name' => 'Nigerian Kitchen',
+            'business_name' => 'His Grace Kitchen LTD',
+            'site_name' => 'His Grace Kitchen LTD',
             'base_currency' => 'NGN',
             'display_currencies' => ['NGN', 'GBP', 'USD', 'CAD', 'EUR'],
             'whatsapp_number' => '+2348031234567',

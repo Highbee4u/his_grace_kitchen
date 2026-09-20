@@ -178,7 +178,7 @@
         <table>
             <tr>
                 <td style="width: 55%; vertical-align: top;">
-                    <div class="brand-title">Nigerian Kitchen</div>
+                    <div class="brand-title">His Grace Kitchen LTD</div>
                     <div class="brand-subtitle">Authentic Native Gastronomy & Catering</div>
                     <div class="brand-address">
                         Admiralty Way, Lekki Phase 1, Lagos, Nigeria<br>
@@ -319,8 +319,8 @@
     <!-- Official Bank Details -->
     <div class="payment-info">
         <strong>Official Settlement Bank Details:</strong><br>
-        Guaranty Trust Bank (GTBank): Account No: <strong>0123456789</strong> • Name: Nigerian Kitchen Hospitality Ltd<br>
-        Zenith Bank: Account No: <strong>1012345678</strong> • Name: Nigerian Kitchen Hospitality Ltd<br>
+        Guaranty Trust Bank (GTBank): Account No: <strong>0123456789</strong> • Name: His Grace Kitchen LTD Hospitality Ltd<br>
+        Zenith Bank: Account No: <strong>1012345678</strong> • Name: His Grace Kitchen LTD Hospitality Ltd<br>
         Payment Reference: <strong>{{ $invoice->number }}</strong>
     </div>
 
@@ -333,7 +333,7 @@
 
     <!-- Footer -->
     <div class="footer">
-        Thank you for choosing Nigerian Kitchen. Fresh ingredients. Uncompromising tradition.<br>
+        Thank you for choosing His Grace Kitchen LTD. Fresh ingredients. Uncompromising tradition.<br>
         This document serves as an official electronic receipt and tax invoice.
     </div>
 

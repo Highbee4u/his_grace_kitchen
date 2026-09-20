@@ -18,7 +18,7 @@ class SeoTest extends TestCase
 
         SiteSetting::create([
             'key' => 'site_name',
-            'value' => 'Nigerian Kitchen',
+            'value' => 'His Grace Kitchen LTD',
         ]);
 
         SiteSetting::create([

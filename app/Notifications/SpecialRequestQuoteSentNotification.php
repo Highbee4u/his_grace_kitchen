@@ -26,7 +26,7 @@ class SpecialRequestQuoteSentNotification extends Notification implements Should
         $totalFormatted = Money::format($this->specialRequest->quoted_total_minor, $this->specialRequest->currency ?? 'NGN');
 
         return (new MailMessage)
-            ->subject("Chef Quote Ready: Special Request #{$this->specialRequest->reference} - Nigerian Kitchen")
+            ->subject("Chef Quote Ready: Special Request #{$this->specialRequest->reference} - His Grace Kitchen LTD")
             ->greeting("Hello {$this->specialRequest->customer_name},")
             ->line('Our head chef has reviewed market ingredient availability for your custom dish request.')
             ->line("**Quoted Total:** {$totalFormatted}")

@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', ($siteName ?? 'Nigerian Kitchen') . ' | Authentic Nigerian Cuisine & Diaspora Delivery')</title>
+    <title>@yield('title', ($siteName ?? 'His Grace Kitchen LTD') . ' | Authentic Nigerian Cuisine & Diaspora Delivery')</title>
     <meta name="description" content="@yield('meta_description', 'Handcrafted Nigerian culinary classics: Smoky Party Jollof, Egusi Soup, Tender Flame-Grilled Suya, and Owambe Event Catering. Fast delivery across Nigeria and express courier to the UK, US, Canada, and Europe.')">
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
     <!-- Open Graph & Social -->
-    <meta property="og:site_name" content="{{ $siteName ?? 'Nigerian Kitchen' }}">
-    <meta property="og:title" content="@yield('title', ($siteName ?? 'Nigerian Kitchen') . ' | Authentic Nigerian Cuisine')">
+    <meta property="og:site_name" content="{{ $siteName ?? 'His Grace Kitchen LTD' }}">
+    <meta property="og:title" content="@yield('title', ($siteName ?? 'His Grace Kitchen LTD') . ' | Authentic Nigerian Cuisine')">
     <meta property="og:description" content="@yield('meta_description', 'Smoky Party Jollof, Rich Native Soups, and Authentic Grills delivered hot to your doorstep.')">
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="@yield('canonical', url()->current())">
@@ -20,7 +20,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('title', ($siteName ?? 'Nigerian Kitchen') . ' | Authentic Nigerian Cuisine')">
+    <meta name="twitter:title" content="@yield('title', ($siteName ?? 'His Grace Kitchen LTD') . ' | Authentic Nigerian Cuisine')">
     <meta name="twitter:description" content="@yield('meta_description', 'Smoky Party Jollof, Rich Native Soups, and Authentic Grills delivered hot to your doorstep.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/hero-jollof.jpg'))">
 
@@ -74,62 +74,62 @@
     </div>
 
     <!-- Main Navigation Header -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200/80 shadow-xs">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200/80 shadow-xs" x-data="{ mobileMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+            <div class="flex items-center justify-between h-20 gap-4">
                 <!-- Brand Logo -->
-                <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <div class="w-11 h-11 rounded-full bg-[#0D4A2B] flex items-center justify-center text-amber-400 shadow-md group-hover:scale-105 transition-transform duration-200">
-                        <span class="font-serif text-lg font-extrabold tracking-tighter">
-                            {{ strtoupper(collect(explode(' ', $siteName ?? 'NK'))->map(fn($w) => substr($w, 0, 1))->take(2)->join('')) }}
+                <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0D4A2B] flex items-center justify-center text-amber-400 shadow-md group-hover:scale-105 transition-transform duration-200 shrink-0">
+                        <span class="font-serif text-base sm:text-lg font-extrabold tracking-tighter">
+                            {{ strtoupper(collect(explode(' ', $siteName ?? 'HG'))->map(fn($w) => substr($w, 0, 1))->take(2)->join('')) }}
                         </span>
                     </div>
-                    <div>
-                        <span class="font-serif text-2xl font-bold tracking-tight text-stone-900 block leading-tight">
-                            {{ $siteName ?? 'Nigerian Kitchen' }}
+                    <div class="shrink-0">
+                        <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-stone-900 block leading-tight whitespace-nowrap">
+                            {{ $siteName ?? 'His Grace Kitchen LTD' }}
                         </span>
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-[#0D4A2B] block">
+                        <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-[#0D4A2B] block whitespace-nowrap">
                             Authentic Native Flavors
                         </span>
                     </div>
                 </a>
 
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-stone-700">
+                <!-- Desktop Navigation Links (Non-wrapping, streamlined) -->
+                <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-sm font-semibold text-stone-700 whitespace-nowrap shrink-0">
                     <a href="{{ route('home') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('home') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
                         Home
                     </a>
                     <a href="{{ route('menu.index') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('menu.*') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
-                        Browse Menu
+                        Menu
                     </a>
                     <a href="{{ route('combos.index') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('combos.*') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
-                        Combos & Deals
+                        Combos
                     </a>
                     <a href="{{ route('catering.index') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('catering.*') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
-                        Event Catering
+                        Catering
                     </a>
                     <a href="{{ route('special-requests.create') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('special-requests.*') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
-                        Special Request
+                        Special Requests
                     </a>
                     <a href="{{ route('about') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('about') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
-                        Our Story
+                        About
                     </a>
                     <a href="{{ route('contact') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('contact') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
                         Contact
                     </a>
                 </nav>
 
-                <!-- Actions (Account & Cart) -->
-                <div class="flex items-center gap-3">
+                <!-- Actions (Account & Cart & Mobile Hamburger) -->
+                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-stone-700 bg-stone-100 hover:bg-stone-200 px-3 py-2 rounded-lg transition-colors">
+                        <a href="{{ url('/dashboard') }}" class="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-stone-700 bg-stone-100 hover:bg-stone-200 px-3 py-2 rounded-lg transition-colors whitespace-nowrap">
                             <svg class="w-4 h-4 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                             </svg>
                             My Account
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="hidden sm:inline-flex text-xs font-semibold text-stone-700 hover:text-[#0D4A2B] px-3 py-2">
+                        <a href="{{ route('login') }}" class="hidden sm:inline-flex text-xs font-semibold text-stone-700 hover:text-[#0D4A2B] px-3 py-2 whitespace-nowrap">
                             Log in
                         </a>
                     @endauth
@@ -138,7 +138,7 @@
                     <button 
                         type="button" 
                         @click="$store.cart.isOpen = true"
-                        class="relative inline-flex items-center gap-2 bg-[#0D4A2B] hover:bg-[#09351e] text-white px-4 py-2.5 rounded-full font-semibold text-sm shadow-sm transition-all duration-150 transform active:scale-95"
+                        class="relative inline-flex items-center gap-2 bg-[#0D4A2B] hover:bg-[#09351e] text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-semibold text-sm shadow-sm transition-all duration-150 transform active:scale-95 whitespace-nowrap shrink-0"
                     >
                         <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
@@ -149,7 +149,75 @@
                             x-text="$store.cart.count"
                         >0</span>
                     </button>
+
+                    <!-- Mobile Hamburger Toggle Button -->
+                    <button 
+                        type="button" 
+                        @click="mobileMenuOpen = !mobileMenuOpen"
+                        class="lg:hidden p-2 rounded-xl text-stone-700 hover:text-[#0D4A2B] hover:bg-stone-100 transition-colors"
+                        aria-label="Toggle Navigation Menu"
+                    >
+                        <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg x-cloak x-show="mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div 
+            x-cloak 
+            x-show="mobileMenuOpen" 
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            class="lg:hidden border-t border-stone-200 bg-white px-4 py-3 space-y-1 shadow-md"
+            @click.outside="mobileMenuOpen = false"
+        >
+            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('home') ? 'bg-emerald-50 text-[#0D4A2B]' : 'text-stone-700 hover:bg-stone-50' }}">
+                Home
+            </a>
+            <a href="{{ route('menu.index') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('menu.*') ? 'bg-emerald-50 text-[#0D4A2B]' : 'text-stone-700 hover:bg-stone-50' }}">
+                Menu
+            </a>
+            <a href="{{ route('combos.index') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('combos.*') ? 'bg-emerald-50 text-[#0D4A2B]' : 'text-stone-700 hover:bg-stone-50' }}">
+                Combos & Deals
+            </a>
+            <a href="{{ route('catering.index') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('catering.*') ? 'bg-emerald-50 text-[#0D4A2B]' : 'text-stone-700 hover:bg-stone-50' }}">
+                Event Catering
+            </a>
+            <a href="{{ route('special-requests.create') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('special-requests.*') ? 'bg-emerald-50 text-[#0D4A2B]' : 'text-stone-700 hover:bg-stone-50' }}">
+                Special Requests
+            </a>
+            <a href="{{ route('reviews.index') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('reviews.*') ? 'bg-emerald-50 text-[#0D4A2B]' : 'text-stone-700 hover:bg-stone-50' }}">
+                Customer Reviews
+            </a>
+            <a href="{{ route('about') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('about') ? 'bg-emerald-50 text-[#0D4A2B]' : 'text-stone-700 hover:bg-stone-50' }}">
+                Our Story
+            </a>
+            <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('contact') ? 'bg-emerald-50 text-[#0D4A2B]' : 'text-stone-700 hover:bg-stone-50' }}">
+                Contact Us
+            </a>
+            <div class="pt-2 border-t border-stone-100 flex items-center justify-between">
+                @auth
+                    <a href="{{ url('/dashboard') }}" class="inline-flex items-center gap-2 text-sm font-bold text-[#0D4A2B] py-2 px-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        My Customer Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="inline-flex items-center gap-2 text-sm font-bold text-[#0D4A2B] py-2 px-3">
+                        Log in / Register
+                    </a>
+                @endauth
             </div>
         </div>
     </header>
@@ -319,7 +387,7 @@
 
     <!-- Floating WhatsApp Order Button -->
     <a 
-        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello Nigerian Kitchen! I would like to place a food order or catering enquiry.') }}" 
+        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! I would like to place a food order or catering enquiry.') }}" 
         target="_blank" 
         rel="noopener noreferrer"
         class="fixed bottom-6 right-6 z-30 flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-3 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
@@ -341,7 +409,7 @@
                         <div class="w-10 h-10 rounded-full bg-[#0D4A2B] flex items-center justify-center text-amber-400 font-serif text-base font-extrabold shadow-inner border border-white/10">
                             {{ strtoupper(collect(explode(' ', $siteName ?? 'NK'))->map(fn($w) => substr($w, 0, 1))->take(2)->join('')) }}
                         </div>
-                        <span class="font-serif text-2xl font-bold text-white tracking-tight">{{ $siteName ?? 'Nigerian Kitchen' }}</span>
+                        <span class="font-serif text-2xl font-bold text-white tracking-tight">{{ $siteName ?? 'His Grace Kitchen LTD' }}</span>
                     </div>
                     <p class="text-stone-400 text-sm leading-relaxed max-w-sm">
                         Crafting authentic Nigerian gastronomic experiences with slow-simmered rich native soups, firewood-infused smoky jollof, and succulent charcoal grills. Serving food lovers locally and worldwide across the UK, USA, Canada, and Europe.
@@ -396,7 +464,7 @@
 
             <!-- Bottom Copyright -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-                <p>&copy; {{ date('Y') }} {{ $siteName ?? 'Nigerian Kitchen' }}. All rights reserved. Crafted with authentic passion.</p>
+                <p>&copy; {{ date('Y') }} {{ $siteName ?? 'His Grace Kitchen LTD' }}. All rights reserved. Crafted with authentic passion.</p>
                 <div class="flex items-center gap-4">
                     <span>Paystack (NGN)</span>
                     <span>•</span>

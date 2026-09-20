@@ -1,6 +1,6 @@
 @extends('layouts.storefront')
 
-@section('title', 'Combos & Feast Boxes | Nigerian Kitchen')
+@section('title', 'Combos & Feast Boxes | His Grace Kitchen LTD')
 @section('meta_description', 'Curated Nigerian food combo boxes: Lagos Owambe Party Box, Big Swallow Feast, Suya & Street Chops Platter, and Ofada King Feast.')
 
 @push('json_ld')
@@ -122,7 +122,7 @@
                                     Add Combo to Tray
                                 </button>
                                 <a 
-                                    href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello Nigerian Kitchen! I would like to order the ' . $combo->name . ' combo feast.') }}" 
+                                    href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! I would like to order the ' . $combo->name . ' combo feast.') }}" 
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 py-3.5 px-4 rounded-xl font-semibold text-sm transition-colors"

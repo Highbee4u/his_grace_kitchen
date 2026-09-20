@@ -1,7 +1,7 @@
 @extends('layouts.storefront')
 
-@section('title', 'Customer Reviews & Dining Feedback | ' . ($siteName ?? 'Nigerian Kitchen'))
-@section('meta_description', 'Read authentic customer reviews and food lover experiences for Nigerian Kitchen. Smoky party jollof, slow-simmered native soups, and event catering.')
+@section('title', 'Customer Reviews & Dining Feedback | ' . ($siteName ?? 'His Grace Kitchen LTD'))
+@section('meta_description', 'Read authentic customer reviews and food lover experiences for His Grace Kitchen LTD. Smoky party jollof, slow-simmered native soups, and event catering.')
 
 @section('content')
 <div class="bg-[#FCFBF7] py-12 sm:py-16" x-data="{

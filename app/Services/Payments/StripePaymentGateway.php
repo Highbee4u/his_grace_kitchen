@@ -45,7 +45,7 @@ class StripePaymentGateway implements PaymentGatewayInterface
                 ->post('https://api.stripe.com/v1/checkout/sessions', [
                     'payment_method_types[0]' => 'card',
                     'line_items[0][price_data][currency]' => strtolower($order->currency ?? 'usd'),
-                    'line_items[0][price_data][product_data][name]' => "Nigerian Kitchen Order #{$order->order_number}",
+                    'line_items[0][price_data][product_data][name]' => "His Grace Kitchen LTD Order #{$order->order_number}",
                     'line_items[0][price_data][unit_amount]' => $order->total_minor,
                     'line_items[0][quantity]' => 1,
                     'mode' => 'payment',

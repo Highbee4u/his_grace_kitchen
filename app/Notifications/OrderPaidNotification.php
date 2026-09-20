@@ -26,12 +26,12 @@ class OrderPaidNotification extends Notification implements ShouldQueue
         $formattedTotal = Money::format($this->order->total_minor, $this->order->currency ?? 'NGN');
 
         return (new MailMessage)
-            ->subject("Payment Confirmed: Order #{$this->order->order_number} - Nigerian Kitchen")
+            ->subject("Payment Confirmed: Order #{$this->order->order_number} - His Grace Kitchen LTD")
             ->greeting("Hello {$this->order->customer_name},")
             ->line("Good news! Your payment of {$formattedTotal} for Order #{$this->order->order_number} has been verified.")
             ->line('Our kitchen team is now preparing your delicious meal with the freshest native ingredients.')
             ->action('Track Preparation & Delivery', $trackingUrl)
-            ->line('Thank you for choosing Nigerian Kitchen!');
+            ->line('Thank you for choosing His Grace Kitchen LTD!');
     }
 
     public function toArray(object $notifiable): array

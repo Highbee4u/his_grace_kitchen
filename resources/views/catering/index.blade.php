@@ -1,6 +1,6 @@
 @extends('layouts.storefront')
 
-@section('title', 'Authentic Nigerian Event Catering & Diaspora Banquets | Nigerian Kitchen')
+@section('title', 'Authentic Nigerian Event Catering & Diaspora Banquets | His Grace Kitchen LTD')
 @section('meta_description', 'Full-service Nigerian event catering for weddings, corporate galas, and family gatherings. Featuring live Suya BBQ stations, rich soup bars, and international chilled air-cargo banquets.')
 
 @push('json_ld')

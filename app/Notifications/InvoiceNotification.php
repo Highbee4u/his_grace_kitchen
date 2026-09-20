@@ -29,9 +29,9 @@ class InvoiceNotification extends Notification implements ShouldQueue
         $totalFormatted = Money::format($this->invoice->total_minor, $this->invoice->currency);
 
         $mail = (new MailMessage)
-            ->subject("Invoice #{$this->invoice->number} - Nigerian Kitchen")
+            ->subject("Invoice #{$this->invoice->number} - His Grace Kitchen LTD")
             ->greeting('Hello,')
-            ->line("Thank you for your business with Nigerian Kitchen. Please find your invoice #{$this->invoice->number} details below.")
+            ->line("Thank you for your business with His Grace Kitchen LTD. Please find your invoice #{$this->invoice->number} details below.")
             ->line("**Invoice Amount:** {$totalFormatted}")
             ->line('**Status:** '.strtoupper($this->invoice->status))
             ->action('Download Invoice PDF', $downloadUrl)

@@ -26,9 +26,9 @@ class OrderPlacedNotification extends Notification implements ShouldQueue
         $formattedTotal = Money::format($this->order->total_minor, $this->order->currency ?? 'NGN');
 
         return (new MailMessage)
-            ->subject("Order #{$this->order->order_number} Received - Nigerian Kitchen")
+            ->subject("Order #{$this->order->order_number} Received - His Grace Kitchen LTD")
             ->greeting("Hello {$this->order->customer_name},")
-            ->line('Thank you for ordering with Nigerian Kitchen! We have received your order and our chefs are ready.')
+            ->line('Thank you for ordering with His Grace Kitchen LTD! We have received your order and our chefs are ready.')
             ->line("Order Number: #{$this->order->order_number}")
             ->line('Fulfillment: '.ucfirst($this->order->fulfilment_type))
             ->line("Order Total: {$formattedTotal}")

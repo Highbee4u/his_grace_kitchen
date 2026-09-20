@@ -27,7 +27,7 @@ class CateringQuoteSentNotification extends Notification implements ShouldQueue
         $depositFormatted = Money::format($this->cateringRequest->deposit_minor, $this->cateringRequest->currency ?? 'NGN');
 
         return (new MailMessage)
-            ->subject("Event Catering Quotation #{$this->cateringRequest->reference} - Nigerian Kitchen")
+            ->subject("Event Catering Quotation #{$this->cateringRequest->reference} - His Grace Kitchen LTD")
             ->greeting("Hello {$this->cateringRequest->customer_name},")
             ->line("Our culinary event director has prepared your customized catering quotation for your event on {$this->cateringRequest->event_date}.")
             ->line("**Quoted Total:** {$totalFormatted}")

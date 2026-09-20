@@ -67,6 +67,6 @@ class SiteSetting extends Model
     {
         return static::get('site_name')
             ?? static::get('business_name')
-            ?? config('app.name', 'Nigerian Kitchen');
+            ?? config('app.name', 'His Grace Kitchen LTD');
     }
 }

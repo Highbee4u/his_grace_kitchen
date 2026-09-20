@@ -1,6 +1,6 @@
-# Nigerian Kitchen — Staff & Administrator Operating Guide
+# His Grace Kitchen LTD — Staff & Administrator Operating Guide
 
-This user guide provides operational instructions for managers, culinary staff, and administrators managing the **Nigerian Kitchen** platform at `/admin`.
+This user guide provides operational instructions for managers, culinary staff, and administrators managing the **His Grace Kitchen LTD** platform at `/admin`.
 
 ---
 

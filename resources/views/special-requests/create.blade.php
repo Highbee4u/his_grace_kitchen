@@ -1,6 +1,6 @@
 @extends('layouts.storefront')
 
-@section('title', 'Special Custom Dish Request | Nigerian Kitchen')
+@section('title', 'Special Custom Dish Request | His Grace Kitchen LTD')
 @section('meta_description', 'Craving a specific Nigerian regional delicacy not on the daily menu? Request custom pots of Afang, Fisherman Soup, Bitterleaf, Banga, or Tuwo cooked fresh to order.')
 
 @section('content')

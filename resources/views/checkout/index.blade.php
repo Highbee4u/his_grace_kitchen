@@ -1,6 +1,6 @@
 @extends('layouts.storefront')
 
-@section('title', 'Secure Checkout | Nigerian Kitchen')
+@section('title', 'Secure Checkout | His Grace Kitchen LTD')
 @section('meta_description', 'Complete your authentic Nigerian food order with fast local delivery or international diaspora courier.')
 
 @section('content')
@@ -266,7 +266,7 @@
                         <!-- Pickup Specific Notice -->
                         <div x-show="fulfilmentType === 'pickup'" class="p-4 rounded-2xl bg-amber-50 border border-amber-200/70 text-xs text-stone-700 space-y-1">
                             <strong class="font-bold text-amber-950 block">Pickup Location:</strong>
-                            <p>Nigerian Kitchen Central Base, Admiralty Way, Lekki Phase 1, Lagos.</p>
+                            <p>His Grace Kitchen LTD Central Base, Admiralty Way, Lekki Phase 1, Lagos.</p>
                             <p class="text-stone-500">Your meal will be packaged in thermal containers ready for pickup within 35–45 minutes of confirmation.</p>
                         </div>
                     </div>

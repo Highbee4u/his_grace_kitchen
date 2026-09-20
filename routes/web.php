@@ -3,6 +3,7 @@
 use App\Http\Controllers\CateringController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ComboController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MenuController;
@@ -61,9 +62,9 @@ Route::get('/invoices/{number}/stream', [InvoiceController::class, 'stream'])->n
 Route::post('/webhooks/paystack', [WebhookController::class, 'handlePaystack'])->name('webhooks.paystack');
 Route::post('/webhooks/stripe', [WebhookController::class, 'handleStripe'])->name('webhooks.stripe');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

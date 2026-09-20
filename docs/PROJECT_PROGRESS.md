@@ -1,4 +1,4 @@
-# Nigerian Kitchen Platform — Full Build Progress & Verification
+# His Grace Kitchen LTD Platform — Full Build Progress & Verification
 
 Updated: 2026-09-20
 Status: **100% COMPLETE (Phases 1 through 8)**
@@ -7,7 +7,7 @@ Status: **100% COMPLETE (Phases 1 through 8)**
 
 ## Executive Summary
 
-The complete, production-ready website and ordering platform for **Nigerian Kitchen** has been engineered and verified across all 8 development phases specified in the project prompt.
+The complete, production-ready website and ordering platform for **His Grace Kitchen LTD** has been engineered and verified across all 8 development phases specified in the project prompt.
 
 - **Automated Tests**: **58 passed (200 assertions)** with zero failures across Unit and Feature suites.
 - **Frontend**: Blade + Tailwind CSS v3 + Alpine.js compiled cleanly via Vite.

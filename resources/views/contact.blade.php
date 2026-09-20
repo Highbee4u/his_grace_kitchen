@@ -1,7 +1,7 @@
 @extends('layouts.storefront')
 
-@section('title', 'Contact Us & Kitchen Locations | Nigerian Kitchen')
-@section('meta_description', 'Get in touch with Nigerian Kitchen. Lagos central kitchen address, customer care WhatsApp, email, opening hours, and diaspora logistics inquiries.')
+@section('title', 'Contact Us & Kitchen Locations | His Grace Kitchen LTD')
+@section('meta_description', 'Get in touch with His Grace Kitchen LTD. Lagos central kitchen address, customer care WhatsApp, email, opening hours, and diaspora logistics inquiries.')
 
 @push('json_ld')
     {!! \App\Support\SeoHelper::render(\App\Support\SeoHelper::breadcrumbSchema([
@@ -43,7 +43,7 @@
                         Fastest way to order, modify an active order, or enquire about today's fresh soup pot.
                     </p>
                     <a 
-                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello Nigerian Kitchen! I have an inquiry.') }}"
+                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! I have an inquiry.') }}"
                         target="_blank"
                         rel="noopener noreferrer" 
                         class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-sm shadow transition-colors"

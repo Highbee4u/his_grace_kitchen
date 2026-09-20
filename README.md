@@ -1,4 +1,4 @@
-# Nigerian Kitchen — Production-Ready Culinary & Diaspora Ordering Platform
+# His Grace Kitchen LTD — Production-Ready Culinary & Diaspora Ordering Platform
 
 [![Laravel 11](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=flat-square&logo=laravel)](https://laravel.com)
 [![PHP 8.3](https://img.shields.io/badge/PHP-8.3-777BB4?style=flat-square&logo=php)](https://php.net)
@@ -124,7 +124,7 @@ The application is now accessible at `http://localhost:8000`.
 Add your payment gateway credentials and business info in `.env`:
 
 ```ini
-APP_NAME="Nigerian Kitchen"
+APP_NAME="His Grace Kitchen LTD"
 APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
@@ -153,7 +153,7 @@ STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 
 # Bank Transfer Settlement Details
 BANK_NAME="Guaranty Trust Bank (GTBank)"
-BANK_ACCOUNT_NAME="Nigerian Kitchen Limited"
+BANK_ACCOUNT_NAME="His Grace Kitchen LTD Limited"
 BANK_ACCOUNT_NUMBER="0123456789"
 
 # Queue Driver

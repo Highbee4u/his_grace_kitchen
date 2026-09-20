@@ -1,6 +1,6 @@
 @extends('layouts.storefront')
 
-@section('title', "Custom Dish Quote #{$specialRequest->reference} | Nigerian Kitchen")
+@section('title', "Custom Dish Quote #{$specialRequest->reference} | His Grace Kitchen LTD")
 
 @section('content')
     <div class="bg-[#FCFBF7] py-12 sm:py-16">

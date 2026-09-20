@@ -1,7 +1,7 @@
 @extends('layouts.storefront')
 
-@section('title', "Order #{$order->order_number} | Nigerian Kitchen")
-@section('meta_description', "Live order tracking and receipt for Nigerian Kitchen Order #{$order->order_number}.")
+@section('title', "Order #{$order->order_number} | His Grace Kitchen LTD")
+@section('meta_description', "Live order tracking and receipt for His Grace Kitchen LTD Order #{$order->order_number}.")
 
 @section('content')
     <div class="bg-[#FCFBF7] py-12 sm:py-16" x-init="$store.cart.clear()">
@@ -198,7 +198,7 @@
                 <!-- WhatsApp Updates CTA -->
                 <div class="mt-8 pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <a 
-                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello Nigerian Kitchen! I would like an update on my order #' . $order->order_number) }}" 
+                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! I would like an update on my order #' . $order->order_number) }}" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-5 rounded-xl text-xs shadow transition-colors"
@@ -220,7 +220,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div class="space-y-1">
                         <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">🌟 We Value Your Opinion</span>
-                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-stone-900">How was your Nigerian Kitchen experience?</h3>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-stone-900">How was your His Grace Kitchen LTD experience?</h3>
                         <p class="text-stone-500 text-xs">Rate your dishes, rider delivery, or food quality to earn a Verified Buyer badge on your review.</p>
                     </div>
                     <button 

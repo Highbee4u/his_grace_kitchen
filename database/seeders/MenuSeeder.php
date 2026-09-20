@@ -675,7 +675,7 @@ class MenuSeeder extends Seeder
                     [
                         'name' => 'Tunde Bakare',
                         'location' => 'Victoria Island',
-                        'comment' => 'We used Nigerian Kitchen for our tech firm end-of-year dinner. The live suya station and grilled croaker fish were the highlight of the night!',
+                        'comment' => 'We used His Grace Kitchen LTD for our tech firm end-of-year dinner. The live suya station and grilled croaker fish were the highlight of the night!',
                         'rating' => 5,
                         'dish' => 'Owambe Grand Banquet',
                     ],
@@ -748,7 +748,7 @@ class MenuSeeder extends Seeder
                 'customer_location' => 'Victoria Island, Lagos',
                 'rating' => 5,
                 'title' => 'Sensational live suya station for our corporate gala',
-                'comment' => 'We used Nigerian Kitchen for our tech firm end-of-year dinner. The live suya station, yaji spice blend, and flame-grilled croaker fish were the undisputed highlight of the night!',
+                'comment' => 'We used His Grace Kitchen LTD for our tech firm end-of-year dinner. The live suya station, yaji spice blend, and flame-grilled croaker fish were the undisputed highlight of the night!',
                 'menu_item_id' => $suyaItem?->id,
                 'dish_name' => 'Chargrilled Beef Suya Skewers',
                 'is_verified_buyer' => true,

@@ -48,7 +48,7 @@ class InvoiceService
             'total_minor' => (int) ($order->total_minor ?? 0),
             'currency' => $order->currency ?? 'NGN',
             'line_items' => $lineItems,
-            'notes' => $order->notes ?? 'Thank you for choosing Nigerian Kitchen!',
+            'notes' => $order->notes ?? 'Thank you for choosing His Grace Kitchen LTD!',
             'due_date' => now()->addDays(7)->toDateString(),
             'paid_at' => $isPaid ? now() : null,
         ]);

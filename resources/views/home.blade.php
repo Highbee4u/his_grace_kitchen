@@ -1,6 +1,6 @@
 @extends('layouts.storefront')
 
-@section('title', 'Nigerian Kitchen | Authentic Nigerian Cuisine, Fast Delivery & Diaspora Shipping')
+@section('title', 'His Grace Kitchen LTD | Authentic Nigerian Cuisine, Fast Delivery & Diaspora Shipping')
 @section('meta_description', 'Experience authentic Nigerian cuisine: Firewood Smoky Jollof, Rich Egusi, Pounded Yam, Flame-Grilled Suya, and Owambe Event Catering. Express worldwide delivery.')
 
 @push('json_ld')
@@ -207,7 +207,7 @@
                                 <div class="text-[11px] font-bold text-[#0D4A2B] uppercase tracking-wider">
                                     {{ $dish->category?->name }}
                                 </div>
-                                <a href="{{ route('menu.show', $dish->slug) }}" class="block font-serif text-lg font-bold text-stone-900 hover:text-amber-600 transition-colors mt-1">
+                                <a href="{{ route('menu.show', $dish->slug) }}" title="{{ $dish->name }}" class="block font-serif text-lg font-bold text-stone-900 hover:text-amber-600 transition-colors mt-1 line-clamp-1 truncate">
                                     {{ $dish->name }}
                                 </a>
                                 <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">

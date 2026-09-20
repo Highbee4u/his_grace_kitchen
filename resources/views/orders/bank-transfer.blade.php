@@ -1,6 +1,6 @@
 @extends('layouts.storefront')
 
-@section('title', "Bank Transfer Instructions - Order #{$order->order_number} | Nigerian Kitchen")
+@section('title', "Bank Transfer Instructions - Order #{$order->order_number} | His Grace Kitchen LTD")
 
 @section('content')
     <div class="bg-[#FCFBF7] py-12 sm:py-16">
@@ -39,7 +39,7 @@
                     <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 flex items-center justify-between">
                         <div>
                             <span class="font-bold text-sm text-stone-900 block">Guaranty Trust Bank (GTBank)</span>
-                            <span class="text-xs text-stone-500">Nigerian Kitchen Hospitality Ltd</span>
+                            <span class="text-xs text-stone-500">His Grace Kitchen LTD Hospitality Ltd</span>
                         </div>
                         <div class="text-right">
                             <span class="font-mono text-base font-extrabold text-stone-900 block select-all">0123456789</span>
@@ -51,7 +51,7 @@
                     <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 flex items-center justify-between">
                         <div>
                             <span class="font-bold text-sm text-stone-900 block">Zenith Bank</span>
-                            <span class="text-xs text-stone-500">Nigerian Kitchen Hospitality Ltd</span>
+                            <span class="text-xs text-stone-500">His Grace Kitchen LTD Hospitality Ltd</span>
                         </div>
                         <div class="text-right">
                             <span class="font-mono text-base font-extrabold text-stone-900 block select-all">1012345678</span>
@@ -66,7 +66,7 @@
                         Once transferred, send a screenshot of your bank transfer receipt via WhatsApp for instant automated release of your kitchen ticket:
                     </p>
                     <a 
-                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello Nigerian Kitchen! Here is my payment receipt for order #' . $order->order_number . ' (' . \App\Support\Money::format($order->total_minor, $order->currency) . ')') }}" 
+                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! Here is my payment receipt for order #' . $order->order_number . ' (' . \App\Support\Money::format($order->total_minor, $order->currency) . ')') }}" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl text-sm shadow transition-colors"

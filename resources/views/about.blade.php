@@ -1,7 +1,7 @@
 @extends('layouts.storefront')
 
-@section('title', 'Our Story & Culinary Heritage | Nigerian Kitchen')
-@section('meta_description', 'Discover the story behind Nigerian Kitchen: authentic woodfire jollof rice, native simmered soups, hand-ground spices, and connecting the diaspora back to home.')
+@section('title', 'Our Story & Culinary Heritage | His Grace Kitchen LTD')
+@section('meta_description', 'Discover the story behind His Grace Kitchen LTD: authentic woodfire jollof rice, native simmered soups, hand-ground spices, and connecting the diaspora back to home.')
 
 @push('json_ld')
     {!! \App\Support\SeoHelper::render(\App\Support\SeoHelper::breadcrumbSchema([
@@ -22,7 +22,7 @@
                 The Soul of <span class="text-amber-400">Authentic Nigerian Gastronomy</span>
             </h1>
             <p class="text-stone-300 text-base sm:text-xl max-w-3xl mx-auto font-light leading-relaxed">
-                We founded Nigerian Kitchen with an unyielding obsession: preserving the true, untamed aromas of traditional Nigerian home cooking and bringing them hot to tables in Lagos, London, New York, and beyond.
+                We founded His Grace Kitchen LTD with an unyielding obsession: preserving the true, untamed aromas of traditional Nigerian home cooking and bringing them hot to tables in Lagos, London, New York, and beyond.
             </p>
         </div>
     </section>
@@ -37,7 +37,7 @@
                         No Shortcuts. Real Firewood Smoke and Pure Stone-Ground Native Spices.
                     </h2>
                     <p class="text-stone-600 leading-relaxed text-sm sm:text-base">
-                        In many modern kitchens, the legendary "party jollof" smoky aroma is imitated with artificial additives. At Nigerian Kitchen, we reject shortcuts. Our signature party jollof is slow-cooked over woodfire in cast-iron cauldrons, allowing sweet tatashe (bell peppers), fiery scotch bonnets, onions, and rich stock to caramelise naturally.
+                        In many modern kitchens, the legendary "party jollof" smoky aroma is imitated with artificial additives. At His Grace Kitchen LTD, we reject shortcuts. Our signature party jollof is slow-cooked over woodfire in cast-iron cauldrons, allowing sweet tatashe (bell peppers), fiery scotch bonnets, onions, and rich stock to caramelise naturally.
                     </p>
                     <p class="text-stone-600 leading-relaxed text-sm sm:text-base">
                         Our native soups—Egusi, Efo Riro, Ogbono, and Banga—are simmered for hours using cold-pressed palm oil from eastern groves, whole smoked catfish, dry prawns, fermented locust beans (iru), and aromatic uziza leaves. Every mouthful tastes like home.
@@ -121,7 +121,7 @@
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <span class="text-amber-600 font-bold uppercase tracking-widest text-xs">Our Standard</span>
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">
-                    The Four Pillars of Nigerian Kitchen
+                    The Four Pillars of His Grace Kitchen LTD
                 </h2>
             </div>
 

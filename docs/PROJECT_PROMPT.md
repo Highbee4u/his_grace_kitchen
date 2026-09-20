@@ -1,6 +1,6 @@
-# Nigerian Kitchen Platform Project Brief
+# His Grace Kitchen LTD Platform Project Brief
 
-You are a senior Laravel engineer. Build a production-ready website and ordering platform for a Nigerian kitchen serving customers in Nigeria and the diaspora: UK, US, Canada, and Europe. Work in phases, and after each phase report what was built and how to run and test it. Ask before making major assumptions not covered here.
+You are a senior Laravel engineer. Build a production-ready website and ordering platform for a His Grace Kitchen LTD serving customers in Nigeria and the diaspora: UK, US, Canada, and Europe. Work in phases, and after each phase report what was built and how to run and test it. Ask before making major assumptions not covered here.
 
 ## 1. Tech Stack
 

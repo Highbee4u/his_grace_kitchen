@@ -1,7 +1,7 @@
 @extends('layouts.storefront')
 
-@section('title', 'Track Order | Nigerian Kitchen')
-@section('meta_description', 'Track your Nigerian Kitchen food delivery or catering order in real time.')
+@section('title', 'Track Order | His Grace Kitchen LTD')
+@section('meta_description', 'Track your His Grace Kitchen LTD food delivery or catering order in real time.')
 
 @section('content')
     <div class="bg-[#FCFBF7] py-16 sm:py-24">

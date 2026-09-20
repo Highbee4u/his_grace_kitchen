@@ -36,7 +36,7 @@ class OrderStatusUpdatedNotification extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject("Update on Order #{$this->order->order_number}: {$currentLabel}")
             ->greeting("Hello {$this->order->customer_name},")
-            ->line('The status of your Nigerian Kitchen order has been updated:')
+            ->line('The status of your His Grace Kitchen LTD order has been updated:')
             ->line("**Current Status:** {$currentLabel}")
             ->action('View Live Status', $trackingUrl)
             ->line('Enjoy your delicious authentic meal!');

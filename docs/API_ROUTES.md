@@ -1,4 +1,4 @@
-# Nigerian Kitchen — API & Route Catalog
+# His Grace Kitchen LTD — API & Route Catalog
 
 This document outlines all public endpoints, checkout flows, payment webhooks, and administrative endpoints.
 

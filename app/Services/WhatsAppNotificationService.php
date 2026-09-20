@@ -32,7 +32,7 @@ class WhatsAppNotificationService
         $statusText = ucfirst(str_replace('_', ' ', $order->status));
         $trackingUrl = route('orders.show', $order->order_number);
 
-        $message = $customMessage ?? "Hello {$order->customer_name}, your Nigerian Kitchen order #{$order->order_number} is now: {$statusText}. Track here: {$trackingUrl}";
+        $message = $customMessage ?? "Hello {$order->customer_name}, your His Grace Kitchen LTD order #{$order->order_number} is now: {$statusText}. Track here: {$trackingUrl}";
 
         return $this->sendMessage($phone, $message);
     }

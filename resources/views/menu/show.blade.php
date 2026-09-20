@@ -1,6 +1,6 @@
 @extends('layouts.storefront')
 
-@section('title', $item->name . ' | Nigerian Kitchen Authentic Delicacy')
+@section('title', $item->name . ' | His Grace Kitchen LTD Authentic Delicacy')
 @section('meta_description', Str::limit(strip_tags($item->description ?? $item->name . ' prepared freshly with authentic Nigerian spices and ingredients.'), 155))
 @section('og_image', $item->image_url ?? asset('images/hero-jollof.jpg'))
 @section('og_type', 'restaurant.menu_item')
