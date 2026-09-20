@@ -9,6 +9,7 @@ use App\Models\DeliveryZone;
 use App\Models\MenuCategory;
 use App\Models\MenuItem;
 use App\Models\MenuItemVariant;
+use App\Models\Review;
 use App\Models\SiteSetting;
 use Illuminate\Database\Seeder;
 
@@ -706,5 +707,88 @@ class MenuSeeder extends Seeder
                 ],
             ]
         );
+
+        // 9. Initial Customer Reviews
+        $jollofItem = MenuItem::where('slug', 'smoky-party-jollof-rice')->first();
+        $egusiItem = MenuItem::where('slug', 'native-egusi-soup-pounded-yam')->first();
+        $suyaItem = MenuItem::where('slug', 'chargrilled-beef-suya-skewers')->first();
+
+        $reviews = [
+            [
+                'customer_name' => 'Dr. Folake Adeyemi',
+                'customer_email' => 'folake.adeyemi@example.com',
+                'customer_location' => 'Lekki Phase 1, Lagos',
+                'rating' => 5,
+                'title' => 'Tastes like authentic Abeokuta firewood cooking!',
+                'comment' => 'The smoky party jollof is the closest thing to my grandmother’s firewood kitchen. Absolutely divine flavors, tender peppered beef, and always piping hot on arrival!',
+                'menu_item_id' => $jollofItem?->id,
+                'dish_name' => 'Smoky Party Jollof & Dodo',
+                'is_verified_buyer' => true,
+                'status' => 'approved',
+                'is_featured' => true,
+                'admin_response' => 'Thank you Dr. Folake! We slow-reduce our tatashe base over real seasoned firewood to keep that nostalgic aroma alive.',
+            ],
+            [
+                'customer_name' => 'Chinedu Okafor',
+                'customer_email' => 'chinedu.okafor@example.com',
+                'customer_location' => 'South London, UK',
+                'rating' => 5,
+                'title' => 'Arrived fresh in London in 48 hours!',
+                'comment' => 'Received our blast-chilled Egusi and Banga soup in South London in 48 hours. The freshness, stockfish tenderness, and authentic scent leaf aroma blew our minds.',
+                'menu_item_id' => $egusiItem?->id,
+                'dish_name' => 'Native Egusi Soup & Pounded Yam',
+                'is_verified_buyer' => true,
+                'status' => 'approved',
+                'is_featured' => true,
+                'admin_response' => 'Thank you Chinedu! Our international blast-chilling air cargo packs are sealed to preserve kitchen freshness across continents.',
+            ],
+            [
+                'customer_name' => 'Tunde Bakare',
+                'customer_email' => 'tunde.bakare@example.com',
+                'customer_location' => 'Victoria Island, Lagos',
+                'rating' => 5,
+                'title' => 'Sensational live suya station for our corporate gala',
+                'comment' => 'We used Nigerian Kitchen for our tech firm end-of-year dinner. The live suya station, yaji spice blend, and flame-grilled croaker fish were the undisputed highlight of the night!',
+                'menu_item_id' => $suyaItem?->id,
+                'dish_name' => 'Chargrilled Beef Suya Skewers',
+                'is_verified_buyer' => true,
+                'status' => 'approved',
+                'is_featured' => true,
+                'admin_response' => 'A pleasure catering for your team, Tunde! Our grill master loved serving you all.',
+            ],
+            [
+                'customer_name' => 'Amaka Nwosu',
+                'customer_email' => 'amaka.nwosu@example.com',
+                'customer_location' => 'Ikeja GRA, Lagos',
+                'rating' => 5,
+                'title' => 'Best party jollof in Lagos hands down',
+                'comment' => 'Ordered 3 large trays for my mother’s 60th birthday. Guests thought we hired an on-site owambe caterer. Outstanding spice balance and not overly oily.',
+                'menu_item_id' => $jollofItem?->id,
+                'dish_name' => 'Smoky Party Jollof Rice',
+                'is_verified_buyer' => true,
+                'status' => 'approved',
+                'is_featured' => true,
+            ],
+            [
+                'customer_name' => 'Korede Johnson',
+                'customer_email' => 'korede.johnson@example.com',
+                'customer_location' => 'Manchester, UK',
+                'rating' => 4,
+                'title' => 'Rich, earthy flavors and great packaging',
+                'comment' => 'The native soups thawed wonderfully without losing texture. Would love an option with extra habanero heat next time!',
+                'menu_item_id' => $egusiItem?->id,
+                'dish_name' => 'Native Egusi Soup',
+                'is_verified_buyer' => true,
+                'status' => 'approved',
+                'is_featured' => false,
+            ],
+        ];
+
+        foreach ($reviews as $revData) {
+            Review::updateOrCreate(
+                ['customer_name' => $revData['customer_name'], 'comment' => $revData['comment']],
+                $revData
+            );
+        }
     }
 }

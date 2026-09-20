@@ -327,16 +327,68 @@
         </div>
     </section>
 
-    <!-- Testimonials / Customer Love -->
-    @if (!empty($testimonials))
-        <section class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-                <div class="text-center max-w-xl mx-auto space-y-2">
+    <!-- Testimonials & Customer Reviews -->
+    <section class="py-16 bg-white" x-data="{ reviewModalOpen: false, rating: 5, hoverRating: 5 }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div class="space-y-2">
                     <span class="text-xs uppercase font-extrabold tracking-widest text-[#0D4A2B]">Verified Reviews</span>
-                    <h2 class="font-serif text-3xl font-bold text-stone-900">What Our Food Lovers Say</h2>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">What Our Food Lovers Say</h2>
+                    <p class="text-stone-500 text-xs sm:text-sm">Authentic stories from guests across Lagos, the UK, USA, and beyond.</p>
                 </div>
+                <div class="flex items-center gap-3 shrink-0">
+                    <button 
+                        type="button" 
+                        @click="reviewModalOpen = true" 
+                        class="bg-[#0D4A2B] hover:bg-[#09351e] text-white px-5 py-2.5 rounded-full text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
+                    >
+                        <span>★ Write a Review</span>
+                    </button>
+                    <a 
+                        href="{{ route('reviews.index') }}" 
+                        class="bg-stone-100 hover:bg-stone-200 text-stone-700 px-5 py-2.5 rounded-full text-xs font-bold transition-all"
+                    >
+                        View All Reviews →
+                    </a>
+                </div>
+            </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            @if (session('review_success'))
+                <div class="bg-emerald-50 border-l-4 border-emerald-600 p-4 rounded-xl text-xs text-emerald-800">
+                    {{ session('review_success') }}
+                </div>
+            @endif
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                @if (isset($dbReviews) && $dbReviews->isNotEmpty())
+                    @foreach ($dbReviews as $review)
+                        <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200/80 space-y-4 shadow-xs flex flex-col justify-between hover:border-amber-400/50 transition-all">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="text-amber-500 font-bold text-sm tracking-wider">
+                                        {{ $review->stars }}
+                                    </div>
+                                    @if ($review->is_verified_buyer)
+                                        <span class="text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                                            ✓ Verified Buyer
+                                        </span>
+                                    @endif
+                                </div>
+                                @if ($review->title)
+                                    <h4 class="font-serif font-bold text-stone-900 text-sm">"{{ $review->title }}"</h4>
+                                @endif
+                                <p class="text-stone-700 text-xs sm:text-sm italic leading-relaxed">"{{ $review->comment }}"</p>
+                            </div>
+                            <div class="pt-2 border-t border-stone-200/60 flex items-center justify-between text-xs">
+                                <div>
+                                    <span class="font-bold text-stone-900 block">{{ $review->customer_name }}</span>
+                                    <span class="text-stone-500 text-[11px]">{{ $review->customer_location ? $review->customer_location . ' • ' : '' }}{{ $review->dish_title }}</span>
+                                </div>
+                                <span class="text-[10px] text-stone-400">{{ $review->created_at->diffForHumans() }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                @elseif (!empty($testimonials))
                     @foreach ($testimonials as $t)
                         <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200/80 space-y-4 shadow-xs">
                             <div class="flex text-amber-500 text-sm">★★★★★</div>
@@ -347,10 +399,102 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
+                @endif
             </div>
-        </section>
-    @endif
+        </div>
+
+        <!-- Interactive Review Submission Modal -->
+        <div 
+            x-show="reviewModalOpen" 
+            x-cloak
+            class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/60 backdrop-blur-xs"
+        >
+            <div 
+                @click.outside="reviewModalOpen = false" 
+                class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-stone-200 max-h-[90vh] overflow-y-auto space-y-5"
+            >
+                <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-[#0D4A2B]">Guest Dining Feedback</span>
+                        <h3 class="font-serif text-2xl font-bold text-stone-900">Share Your Experience</h3>
+                    </div>
+                    <button type="button" @click="reviewModalOpen = false" class="text-stone-400 hover:text-stone-600 text-xl font-bold">✕</button>
+                </div>
+
+                <form method="POST" action="{{ route('reviews.store') }}" class="space-y-4">
+                    @csrf
+                    <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+
+                    <!-- Star Picker -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
+                            Your Rating <span class="text-red-500">*</span>
+                        </label>
+                        <div class="flex items-center gap-1">
+                            <template x-for="i in 5" :key="i">
+                                <button 
+                                    type="button" 
+                                    @click="rating = i; hoverRating = i;"
+                                    @mouseenter="hoverRating = i"
+                                    @mouseleave="hoverRating = rating"
+                                    class="text-2xl transition-transform hover:scale-110 focus:outline-hidden"
+                                    :class="i <= hoverRating ? 'text-amber-400' : 'text-stone-200'"
+                                >
+                                    ★
+                                </button>
+                            </template>
+                            <input type="hidden" name="rating" :value="rating">
+                            <span class="ml-2 text-xs font-bold text-stone-600" x-text="rating + ' / 5 Stars'"></span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Your Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="customer_name" value="{{ auth()->user()?->name }}" required placeholder="e.g. Tunde Bakare" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Location</label>
+                            <input type="text" name="customer_location" placeholder="e.g. Victoria Island, Lagos" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Email (Private)</label>
+                            <input type="email" name="customer_email" value="{{ auth()->user()?->email }}" placeholder="tunde@example.com" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Dish Enjoyed</label>
+                            <select name="menu_item_id" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                                <option value="">Select dish (optional)...</option>
+                                @if(isset($allDishes))
+                                    @foreach($allDishes as $d)
+                                        <option value="{{ $d->id }}">{{ $d->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Headline (Optional)</label>
+                        <input type="text" name="title" placeholder="e.g. Unforgettable Egusi & Pounded Yam!" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Your Review <span class="text-red-500">*</span></label>
+                        <textarea name="comment" rows="3" required placeholder="Tell other food lovers about the flavors, warmth, and spices..." class="w-full rounded-xl border-stone-300 text-xs p-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]"></textarea>
+                    </div>
+
+                    <div class="flex items-center justify-end gap-2 pt-2">
+                        <button type="button" @click="reviewModalOpen = false" class="px-4 py-2 rounded-full text-xs font-bold text-stone-600 hover:text-stone-900">Cancel</button>
+                        <button type="submit" class="bg-[#0D4A2B] hover:bg-[#09351e] text-white px-6 py-2.5 rounded-full text-xs font-bold shadow transition-all">Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- FAQs Accordion -->
     @if (!empty($faqs))

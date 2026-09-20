@@ -6,6 +6,7 @@ use App\Models\CateringPackage;
 use App\Models\Combo;
 use App\Models\MenuCategory;
 use App\Models\MenuItem;
+use App\Models\Review;
 use App\Models\SiteSetting;
 use Illuminate\Contracts\View\View;
 
@@ -35,6 +36,13 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
+        $dbReviews = Review::approved()->featured()->with('menuItem')->latest()->take(6)->get();
+        if ($dbReviews->isEmpty()) {
+            $dbReviews = Review::approved()->with('menuItem')->latest()->take(6)->get();
+        }
+
+        $allDishes = MenuItem::where('is_available', true)->orderBy('name')->get();
+
         $testimonials = SiteSetting::get('testimonials', []);
         $faqs = SiteSetting::get('faqs', []);
         $whatsappNumber = SiteSetting::get('whatsapp_number', '+2348000000000');
@@ -45,6 +53,8 @@ class HomeController extends Controller
             'combos',
             'cateringPackages',
             'testimonials',
+            'dbReviews',
+            'allDishes',
             'faqs',
             'whatsappNumber'
         ));

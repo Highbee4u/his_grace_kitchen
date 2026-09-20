@@ -41,6 +41,23 @@ class MenuItem extends Model implements HasMedia
         return Money::format($this->price_minor, $this->currency ?? 'NGN');
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getAverageRatingAttribute(): float
+    {
+        $avg = $this->reviews()->where('status', 'approved')->avg('rating');
+
+        return $avg ? round((float) $avg, 1) : 5.0;
+    }
+
+    public function getApprovedReviewsCountAttribute(): int
+    {
+        return $this->reviews()->where('status', 'approved')->count();
+    }
+
     public function getImageAttribute(): string
     {
         if ($this->hasMedia('images')) {

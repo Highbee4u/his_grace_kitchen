@@ -37,4 +37,9 @@ class Order extends Model
     {
         return $this->hasOne(Invoice::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

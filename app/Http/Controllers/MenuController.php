@@ -66,6 +66,11 @@ class MenuController extends Controller
             ->take(3)
             ->get();
 
-        return view('menu.show', compact('item', 'addOns', 'relatedItems'));
+        $reviews = $item->reviews()
+            ->where('status', 'approved')
+            ->latest()
+            ->get();
+
+        return view('menu.show', compact('item', 'addOns', 'relatedItems', 'reviews'));
     }
 }

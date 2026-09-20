@@ -8,6 +8,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SpecialRequestController;
 use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Artisan;
@@ -22,6 +23,9 @@ Route::get('/catering', [CateringController::class, 'index'])->name('catering.in
 Route::post('/catering', [CateringController::class, 'store'])->name('catering.store')->middleware('throttle:15,1');
 Route::get('/catering/{reference}', [CateringController::class, 'show'])->name('catering.show');
 Route::post('/catering/{reference}/accept', [CateringController::class, 'accept'])->name('catering.accept');
+
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->middleware('throttle:15,1');
 
 Route::get('/special-request', [SpecialRequestController::class, 'create'])->name('special-requests.create');
 Route::post('/special-request', [SpecialRequestController::class, 'store'])->name('special-requests.store')->middleware('throttle:15,1');

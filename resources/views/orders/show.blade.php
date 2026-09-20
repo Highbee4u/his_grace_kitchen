@@ -214,6 +214,84 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Leave a Review for this Order -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/80 shadow-md" x-data="{ orderReviewOpen: false, rating: 5, hoverRating: 5 }">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">🌟 We Value Your Opinion</span>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-stone-900">How was your Nigerian Kitchen experience?</h3>
+                        <p class="text-stone-500 text-xs">Rate your dishes, rider delivery, or food quality to earn a Verified Buyer badge on your review.</p>
+                    </div>
+                    <button 
+                        type="button" 
+                        @click="orderReviewOpen = !orderReviewOpen" 
+                        class="bg-[#0D4A2B] hover:bg-[#09351e] text-white px-5 py-2.5 rounded-full text-xs font-bold shadow transition-all shrink-0"
+                    >
+                        <span x-text="orderReviewOpen ? 'Close Review Form' : '★ Rate Order & Leave Review'"></span>
+                    </button>
+                </div>
+
+                @if (session('review_success'))
+                    <div class="mt-4 bg-emerald-50 border-l-4 border-emerald-600 p-4 rounded-xl text-xs text-emerald-800">
+                        {{ session('review_success') }}
+                    </div>
+                @endif
+
+                <div x-show="orderReviewOpen" x-cloak class="mt-6 pt-6 border-t border-stone-100">
+                    <form method="POST" action="{{ route('reviews.store') }}" class="space-y-4 max-w-2xl">
+                        @csrf
+                        <input type="hidden" name="order_number" value="{{ $order->order_number }}">
+                        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Your Rating <span class="text-red-500">*</span></label>
+                            <div class="flex items-center gap-1">
+                                <template x-for="i in 5" :key="i">
+                                    <button 
+                                        type="button" 
+                                        @click="rating = i; hoverRating = i;"
+                                        @mouseenter="hoverRating = i"
+                                        @mouseleave="hoverRating = rating"
+                                        class="text-2xl transition-transform hover:scale-110 focus:outline-hidden"
+                                        :class="i <= hoverRating ? 'text-amber-400' : 'text-stone-200'"
+                                    >
+                                        ★
+                                    </button>
+                                </template>
+                                <input type="hidden" name="rating" :value="rating">
+                                <span class="ml-2 text-xs font-bold text-stone-600" x-text="rating + ' / 5 Stars'"></span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Customer Name <span class="text-red-500">*</span></label>
+                                <input type="text" name="customer_name" value="{{ $order->customer_name }}" required class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Location</label>
+                                <input type="text" name="customer_location" value="{{ $order->delivery_address['city'] ?? '' }}" placeholder="e.g. Lekki Phase 1, Lagos" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Headline (Optional)</label>
+                            <input type="text" name="title" placeholder="e.g. Hot and delicious! Arrived right on time." class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Your Comments & Dining Feedback <span class="text-red-500">*</span></label>
+                            <textarea name="comment" rows="3" required placeholder="Tell our kitchen and dispatch team about the flavor, hotness, packaging..." class="w-full rounded-xl border-stone-300 text-xs p-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]"></textarea>
+                        </div>
+
+                        <div class="flex items-center justify-end gap-2 pt-2">
+                            <button type="button" @click="orderReviewOpen = false" class="px-4 py-2 rounded-full text-xs font-bold text-stone-600 hover:text-stone-900">Cancel</button>
+                            <button type="submit" class="bg-[#0D4A2B] hover:bg-[#09351e] text-white px-6 py-2.5 rounded-full text-xs font-bold shadow transition-all">Submit Verified Review</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

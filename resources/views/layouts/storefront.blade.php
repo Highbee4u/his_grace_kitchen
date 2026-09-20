@@ -111,6 +111,9 @@
                     <a href="{{ route('special-requests.create') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('special-requests.*') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
                         Special Request
                     </a>
+                    <a href="{{ route('reviews.index') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('reviews.*') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
+                        Reviews
+                    </a>
                     <a href="{{ route('about') }}" class="hover:text-[#0D4A2B] transition-colors {{ request()->routeIs('about') ? 'text-[#0D4A2B] border-b-2 border-[#0D4A2B] pb-1' : '' }}">
                         Our Story
                     </a>
@@ -381,6 +384,7 @@
                     <ul class="space-y-2 text-sm text-stone-400">
                         <li>Email: <a href="mailto:{{ $contactEmail ?? 'orders@africankitchen.test' }}" class="text-amber-400 hover:underline">{{ $contactEmail ?? 'orders@africankitchen.test' }}</a></li>
                         <li>WhatsApp Orders: <span class="text-stone-300 font-semibold">{{ $whatsappNumber ?? '+234 800 000 0000' }}</span></li>
+                        <li><a href="{{ route('reviews.index') }}" class="hover:text-amber-400 transition-colors">Customer Reviews & Ratings</a></li>
                         <li class="pt-2">
                             <a href="{{ url('/admin') }}" class="inline-flex items-center gap-1.5 text-xs bg-stone-800 hover:bg-stone-700 text-stone-300 px-3 py-1.5 rounded border border-stone-700">
                                 <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
