@@ -232,17 +232,19 @@
                                 </a>
                                 <button
                                     type="button"
-                                    x-data="{ inCart: $store.cart.isInCart({{ $dish->id }}) }"
-                                    x-init="$watch('$store.cart.items', () => { inCart = $store.cart.isInCart({{ $dish->id }}) })"
-                                    @click="if (!inCart) { $store.cart.addItem({ id: {{ $dish->id }}, name: '{{ addslashes($dish->name) }}', price: {{ $dish->price_minor }}, currency: '{{ $dish->currency }}', image: '{{ $dish->image }}' }); inCart = true; } else { $store.cart.isOpen = true; }"
-                                    :class="inCart ? 'bg-emerald-600 hover:bg-emerald-700 cursor-default' : 'bg-[#0D4A2B] hover:bg-amber-600'"
+                                    @click="$store.cart.isInCart({{ $dish->id }}) ? ($store.cart.isOpen = true) : $store.cart.addItem({ id: {{ $dish->id }}, name: '{{ addslashes($dish->name) }}', price: {{ $dish->price_minor }}, currency: '{{ $dish->currency }}', image: '{{ $dish->image }}' })"
+                                    :class="$store.cart.isInCart({{ $dish->id }}) ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-[#0D4A2B] hover:bg-amber-600'"
                                     class="inline-flex items-center gap-1.5 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition-colors"
                                 >
-                                    <span x-show="!inCart">+ Add to Tray</span>
-                                    <span x-show="inCart" x-cloak class="flex items-center gap-1">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        In Tray
-                                    </span>
+                                    <template x-if="!$store.cart.isInCart({{ $dish->id }})">
+                                        <span>+ Add to Tray</span>
+                                    </template>
+                                    <template x-if="$store.cart.isInCart({{ $dish->id }})">
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                            In Tray
+                                        </span>
+                                    </template>
                                 </button>
                             </div>
                         </div>
@@ -290,19 +292,21 @@
                                 @endif
                             </div>
 
-                            <button 
-                                type="button" 
-                                @click="if (!inCart) { $store.cart.addItem({ id: 'combo-{{ $combo->id }}', name: '{{ addslashes($combo->name) }}', price: {{ $combo->price_minor }}, currency: '{{ $combo->currency }}', image: '{{ $combo->image }}', variant: 'Combo Pack' }); inCart = true; } else { $store.cart.isOpen = true; }"
-                                x-data="{ inCart: $store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack') }"
-                                x-init="$watch('$store.cart.items', () => { inCart = $store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack') })"
-                                :class="inCart ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-amber-500 hover:bg-amber-600'"
+                            <button
+                                type="button"
+                                @click="$store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack') ? ($store.cart.isOpen = true) : $store.cart.addItem({ id: 'combo-{{ $combo->id }}', name: '{{ addslashes($combo->name) }}', price: {{ $combo->price_minor }}, currency: '{{ $combo->currency }}', image: '{{ $combo->image }}', variant: 'Combo Pack' })"
+                                :class="$store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack') ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-amber-500 hover:bg-amber-600'"
                                 class="w-full text-stone-950 font-extrabold text-sm py-3 rounded-xl transition-colors shadow-md"
                             >
-                                <span x-show="!inCart">Order Combo Tray</span>
-                                <span x-show="inCart" x-cloak class="flex items-center justify-center gap-1.5 text-white">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                    In Tray
-                                </span>
+                                <template x-if="!$store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack')">
+                                    <span>Order Combo Tray</span>
+                                </template>
+                                <template x-if="$store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack')">
+                                    <span class="flex items-center justify-center gap-1.5 text-white">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                        In Tray
+                                    </span>
+                                </template>
                             </button>
                         </div>
                     @endforeach

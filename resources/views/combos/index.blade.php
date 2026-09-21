@@ -105,6 +105,16 @@
 
                             <!-- Action Buttons -->
                             <div class="pt-6 border-t border-stone-100 flex flex-col sm:flex-row items-center gap-3">
+                                <button 
+                                    type="button" 
+                                    @click="$store.cart.addItem({ 
+                                        id: 'combo-{{ $combo->id }}', 
+                                        name: '{{ addslashes($combo->name) }}', 
+                                        price: {{ $combo->price_minor }}, 
+                                        image: '{{ $combo->image }}', 
+                                        variant: 'Combo Feast Box' 
+                                    })" 
+                                    class="w-full sm:flex-1 inline-flex items-center justify-center gap-2 bg-[#0D4A2B] hover:bg-[#09351e] text-white py-3.5 px-5 rounded-xl font-bold text-sm shadow-md transition-all duration-150 transform active:scale-98"
                                 <button
                                     type="button"
                                     x-data="{ inCart: $store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Feast Box') }"
@@ -113,6 +123,10 @@
                                     :class="inCart ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-[#0D4A2B] hover:bg-[#09351e]'"
                                     class="w-full sm:flex-1 inline-flex items-center justify-center gap-2 text-white py-3.5 px-5 rounded-xl font-bold text-sm shadow-md transition-all duration-150 transform active:scale-98"
                                 >
+                                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                                    </svg>
+                                    Add Combo to Tray
                                     <template x-if="!inCart">
                                         <span class="flex items-center gap-2">
                                             <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
