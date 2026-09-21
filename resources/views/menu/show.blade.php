@@ -215,6 +215,7 @@
                             currency: '{{ $item->currency }}',
                             image: '{{ $item->image }}',
                             variant: selectedVariant,
+                            addOns: selectedAddOns.map(addOn => addOn.name),
                             quantity: quantity
                         })"
                         class="flex-1 w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#0D4A2B] hover:bg-[#09351e] text-white py-4 px-8 rounded-2xl font-extrabold text-base shadow-lg shadow-emerald-900/20 transition-all transform active:scale-95"

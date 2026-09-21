@@ -16,7 +16,7 @@
             <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <!-- User Info -->
                 <div class="flex items-center gap-4 sm:gap-5">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-400 text-stone-950 font-serif font-black text-2xl sm:text-3xl flex items-center justify-center shadow-lg border-2 border-white/20 shrink-0">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-amber-400 text-stone-950 font-serif font-black text-2xl sm:text-3xl flex items-center justify-center shadow-lg border-2 border-white/20 shrink-0">
                         {{ strtoupper(substr($user->name, 0, 1)) }}
                     </div>
                     <div>
@@ -174,21 +174,25 @@
                 <span class="text-2xl block mb-1">🍲</span>
                 <span class="text-xs font-bold text-stone-800 group-hover:text-[#0D4A2B] block">Order Fresh Food</span>
                 <span class="text-[10px] text-stone-500">Browse Full Menu</span>
+                <span class="block text-[#0D4A2B] text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
             </a>
             <a href="{{ route('combos.index') }}" class="bg-white hover:bg-emerald-50/50 p-4 rounded-2xl border border-stone-200 text-center transition-all group shadow-xs">
                 <span class="text-2xl block mb-1">🍱</span>
                 <span class="text-xs font-bold text-stone-800 group-hover:text-[#0D4A2B] block">Combos & Deals</span>
                 <span class="text-[10px] text-stone-500">Feast Bundles</span>
+                <span class="block text-[#0D4A2B] text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
             </a>
             <a href="{{ route('catering.index') }}" class="bg-white hover:bg-emerald-50/50 p-4 rounded-2xl border border-stone-200 text-center transition-all group shadow-xs">
                 <span class="text-2xl block mb-1">🎉</span>
                 <span class="text-xs font-bold text-stone-800 group-hover:text-[#0D4A2B] block">Event Catering</span>
                 <span class="text-[10px] text-stone-500">Weddings & Galas</span>
+                <span class="block text-[#0D4A2B] text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
             </a>
             <a href="{{ route('special-requests.create') }}" class="bg-white hover:bg-emerald-50/50 p-4 rounded-2xl border border-stone-200 text-center transition-all group shadow-xs">
                 <span class="text-2xl block mb-1">✨</span>
                 <span class="text-xs font-bold text-stone-800 group-hover:text-[#0D4A2B] block">Custom Dish</span>
                 <span class="text-[10px] text-stone-500">Off-Menu Requests</span>
+                <span class="block text-[#0D4A2B] text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
             </a>
         </div>
 

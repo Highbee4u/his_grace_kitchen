@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\AddOn;
 use App\Models\DeliveryZone;
 use App\Models\MenuCategory;
 use App\Models\MenuItem;
+use App\Models\MenuItemVariant;
 use App\Models\Order;
 use Database\Seeders\RoleAndSettingsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -152,6 +154,42 @@ class CheckoutTest extends TestCase
         ]);
 
         $response->assertRedirect();
+    }
+
+    public function test_checkout_charges_selected_variant_and_add_ons(): void
+    {
+        MenuItemVariant::create([
+            'menu_item_id' => $this->jollofItem->id,
+            'name' => 'Roasted Turkey Wing',
+            'price_minor' => 80000,
+            'is_default' => false,
+            'is_available' => true,
+        ]);
+        AddOn::create([
+            'name' => 'Extra Portion of Fried Plantain (Dodo)',
+            'price_minor' => 80000,
+            'is_available' => true,
+        ]);
+
+        $this->post(route('checkout.store'), [
+            'customer_name' => 'Amina Yusuf',
+            'customer_email' => 'amina@example.com',
+            'customer_phone' => '+2348011112222',
+            'fulfilment_type' => 'pickup',
+            'payment_method' => 'paystack',
+            'cart_items' => json_encode([[
+                'id' => $this->jollofItem->id,
+                'variant' => 'Roasted Turkey Wing',
+                'addOns' => ['Extra Portion of Fried Plantain (Dodo)'],
+                'quantity' => 1,
+            ]]),
+        ]);
+
+        $this->assertDatabaseHas('orders', [
+            'customer_email' => 'amina@example.com',
+            'subtotal_minor' => 610000,
+            'total_minor' => 610000,
+        ]);
     }
 
     public function test_pay_on_delivery_fails_for_disallowed_zone(): void

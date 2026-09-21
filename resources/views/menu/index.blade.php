@@ -11,16 +11,22 @@
 @endpush
 
 @section('content')
-<div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-    <!-- Header Banner -->
-    <div class="text-center max-w-2xl mx-auto space-y-3">
-        <span class="text-xs uppercase font-extrabold tracking-widest text-[#0D4A2B]">Authentic Native Menu</span>
-        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900">Explore Our Full Kitchen</h1>
-        <p class="text-stone-600 text-sm">Every dish is prepared fresh to order using indigenous Nigerian ingredients, authentic spices, and traditional recipes.</p>
+<div class="bg-gradient-to-r from-[#0D4A2B] via-[#0f5431] to-[#0D4A2B] text-white py-10 sm:py-14 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1200&q=60');"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+        <span class="inline-flex items-center gap-1.5 bg-amber-500/20 border border-amber-400/30 text-amber-300 text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+            Authentic Native Menu
+        </span>
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">Explore Our Full Kitchen</h1>
+        <p class="text-stone-300 text-sm max-w-xl mx-auto">Every dish is prepared fresh to order using indigenous Nigerian ingredients, authentic spices, and traditional recipes.</p>
     </div>
+</div>
+
+<div class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
     <!-- Filter & Search Controls -->
-    <div class="bg-white p-6 rounded-3xl border border-stone-200 shadow-xs space-y-6">
+    <div class="bg-white p-6 rounded-3xl border border-stone-200 border-l-4 border-l-[#0D4A2B] shadow-xs space-y-6">
         <!-- Category Tab Buttons -->
         <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             <a 
@@ -131,6 +137,11 @@
                             @if ($dish->spice_level && $dish->spice_level !== 'None')
                                 <span class="bg-red-700 text-white font-bold text-[10px] px-2 py-0.5 rounded-full">
                                     {{ $dish->spice_level }} 🌶️
+                                </span>
+                            @endif
+                            @if (!empty($dish->is_vegetarian))
+                                <span class="bg-emerald-600 text-white font-bold text-[10px] px-2 py-0.5 rounded-full">
+                                    🌿 Veg
                                 </span>
                             @endif
                         </div>

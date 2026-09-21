@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AddOn;
 use App\Models\Combo;
 use App\Models\DeliveryZone;
 use App\Models\MenuItem;
+use App\Models\MenuItemVariant;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Notifications\OrderPlacedNotification;
@@ -112,6 +114,36 @@ class CheckoutController extends Controller
                     $menuItemId = $item->id;
                     $unitPrice = (int) $item->price_minor;
                     $name = $item->name;
+
+                    $variantName = $rawItem['variant'] ?? null;
+                    if ($variantName) {
+                        $variant = MenuItemVariant::where('menu_item_id', $item->id)
+                            ->where('name', $variantName)
+                            ->where('is_available', true)
+                            ->first();
+
+                        if ($variant) {
+                            $unitPrice += (int) $variant->price_minor;
+                            $options['variant'] = $variant->name;
+                        }
+                    }
+
+                    $requestedAddOns = collect($rawItem['addOns'] ?? [])
+                        ->filter(fn ($addOn) => is_string($addOn) && $addOn !== '')
+                        ->unique()
+                        ->values();
+
+                    if ($requestedAddOns->isNotEmpty()) {
+                        $addOns = AddOn::whereIn('name', $requestedAddOns)
+                            ->where('is_available', true)
+                            ->get(['name', 'price_minor']);
+
+                        $unitPrice += (int) $addOns->sum('price_minor');
+                        $options['add_ons'] = $addOns->map(fn ($addOn) => [
+                            'name' => $addOn->name,
+                            'price_minor' => (int) $addOn->price_minor,
+                        ])->values()->all();
+                    }
                 } else {
                     $unitPrice = (int) ($rawItem['price'] ?? 0);
                 }

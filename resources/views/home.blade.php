@@ -100,7 +100,7 @@
                         </div>
 
                         <!-- Floating Review Badge -->
-                        <div class="absolute -bottom-6 -left-6 bg-white text-stone-900 p-4 rounded-2xl shadow-xl border border-stone-100 hidden sm:flex items-center gap-3 max-w-xs animate-bounce-short">
+                        <div class="absolute -bottom-6 -left-6 bg-white text-stone-900 p-4 rounded-2xl shadow-xl border border-stone-100 hidden sm:flex items-center gap-3 max-w-xs animate-bounce">
                             <div class="w-10 h-10 rounded-full bg-emerald-100 text-[#0D4A2B] flex items-center justify-center font-bold text-lg shrink-0">
                                 🌶️
                             </div>
@@ -114,10 +114,20 @@
                 </div>
             </div>
         </div>
+
+        <!-- Scroll Indicator -->
+        <div class="flex justify-center pb-6 pt-2">
+            <a href="#menu-catalog" aria-label="Scroll down" class="flex flex-col items-center gap-1 text-stone-400 hover:text-amber-400 transition-colors animate-bounce">
+                <span class="text-[10px] uppercase font-bold tracking-widest">Explore</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </a>
+        </div>
     </section>
 
     <!-- Category Navigation Pills -->
-    <section class="py-10 bg-white border-b border-stone-200/80">
+    <section id="menu-catalog" class="py-10 bg-white border-b border-stone-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between mb-6">
                 <div>
@@ -131,9 +141,9 @@
 
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                 @foreach ($categories as $cat)
-                    <a 
-                        href="{{ route('menu.index', ['category' => $cat->slug]) }}" 
-                        class="group flex flex-col p-4 rounded-2xl border border-stone-200/80 hover:border-amber-500 bg-stone-50 hover:bg-amber-50/40 transition-all hover:shadow-md"
+                    <a
+                        href="{{ route('menu.index', ['category' => $cat->slug]) }}"
+                        class="group flex flex-col p-4 rounded-2xl border border-stone-200/80 hover:border-amber-500 bg-stone-50 hover:bg-amber-50/40 transition-all hover:shadow-md hover:scale-105"
                     >
                         <div class="w-10 h-10 rounded-xl bg-[#0D4A2B]/10 group-hover:bg-[#0D4A2B] text-[#0D4A2B] group-hover:text-amber-400 flex items-center justify-center font-bold mb-3 transition-colors">
                             @if ($cat->slug === 'rice-grains')
@@ -597,13 +607,19 @@
                 <div class="space-y-4" x-data="{ active: null }">
                     @foreach ($faqs as $idx => $faq)
                         <div class="bg-white rounded-2xl border border-stone-200/80 overflow-hidden shadow-xs">
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 @click="active = (active === {{ $idx }} ? null : {{ $idx }})"
-                                class="w-full flex items-center justify-between p-5 text-left font-bold text-stone-900 text-sm hover:text-[#0D4A2B]"
+                                class="w-full flex items-center justify-between p-5 text-left font-bold text-stone-900 text-sm hover:text-[#0D4A2B] transition-colors"
                             >
                                 <span>{{ $faq['question'] }}</span>
-                                <span class="text-amber-600 text-lg font-bold" x-text="active === {{ $idx }} ? '−' : '+'"></span>
+                                <svg
+                                    class="w-5 h-5 text-amber-600 shrink-0 transition-transform duration-300"
+                                    :class="active === {{ $idx }} ? 'rotate-180' : ''"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                </svg>
                             </button>
                             <div x-show="active === {{ $idx }}" x-collapse class="px-5 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
                                 {{ $faq['answer'] }}
