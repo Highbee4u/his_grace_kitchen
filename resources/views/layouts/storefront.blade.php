@@ -29,6 +29,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
+    <link rel="dns-prefetch" href="//images.unsplash.com">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800|playfair-display:600,700,800&display=swap" rel="stylesheet" />
 
     <!-- Scripts & Styles -->

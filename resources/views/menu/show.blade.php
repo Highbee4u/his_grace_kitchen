@@ -61,7 +61,7 @@
             <!-- Left: Dish Photo & Badges -->
             <div class="lg:col-span-6 space-y-4">
                 <div class="relative aspect-4/3 rounded-3xl overflow-hidden bg-stone-100 shadow-md">
-                    <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-full h-full object-cover">
+                    <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-full h-full object-cover" width="900" height="675" fetchpriority="high" decoding="async">
                     <div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
                         @if ($item->spice_level && $item->spice_level !== 'None')
                             <span class="bg-red-700 text-white font-bold text-xs px-3 py-1 rounded-full shadow-xs">
@@ -208,6 +208,7 @@
                     <!-- Add Button -->
                     <button 
                         type="button" 
+                        :disabled="$store.cart.hasItem({{ $item->id }})"
                         @click="$store.cart.addItem({
                             id: {{ $item->id }},
                             name: '{{ addslashes($item->name) }}',
@@ -218,12 +219,13 @@
                             addOns: selectedAddOns.map(addOn => addOn.name),
                             quantity: quantity
                         })"
-                        class="flex-1 w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#0D4A2B] hover:bg-[#09351e] text-white py-4 px-8 rounded-2xl font-extrabold text-base shadow-lg shadow-emerald-900/20 transition-all transform active:scale-95"
+                        :class="$store.cart.hasItem({{ $item->id }}) ? 'bg-stone-300 text-stone-600 cursor-not-allowed' : 'bg-[#0D4A2B] hover:bg-[#09351e] text-white'"
+                        class="flex-1 w-full sm:w-auto inline-flex items-center justify-center gap-3 py-4 px-8 rounded-2xl font-extrabold text-base shadow-lg shadow-emerald-900/20 transition-all transform active:scale-95"
                     >
                         <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                         </svg>
-                        <span>Add to Food Tray • <span x-text="formattedTotal"></span></span>
+                        <span x-text="$store.cart.hasItem({{ $item->id }}) ? 'Already in Tray' : 'Add to Food Tray • ' + formattedTotal"></span>
                     </button>
                 </div>
             </div>

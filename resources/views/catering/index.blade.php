@@ -96,6 +96,8 @@
                                 src="{{ $package->image }}" 
                                 alt="{{ $package->name }}" 
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
+                                decoding="async"
                             >
                             <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/20 to-transparent"></div>
 

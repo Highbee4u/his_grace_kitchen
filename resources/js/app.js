@@ -45,39 +45,34 @@ Alpine.store('cart', {
     isOpen: false,
 
     addItem(item) {
-        const existingIndex = this.items.findIndex(i => i.id === item.id && i.variant === item.variant);
+        const variant = item.variant || null;
+        const existingIndex = this.items.findIndex(i => i.id === item.id && i.variant === variant);
         if (existingIndex > -1) {
-            this.items[existingIndex].quantity += (item.quantity || 1);
-        } else {
-            this.items.push({
-                id: item.id,
-                name: item.name,
-                price: Number(item.price),
-                currency: item.currency || 'NGN',
-                image: item.image,
-                variant: item.variant || null,
-                quantity: item.quantity || 1
-            });
-            // Item already in tray — do NOT increment, just open the drawer so user can see it
             this.isOpen = true;
-            return false; // signals "already in cart"
+            return false;
         }
+
         this.items.push({
             id: item.id,
             name: item.name,
             price: Number(item.price),
             currency: item.currency || 'NGN',
             image: item.image,
-            variant: item.variant || null,
+            variant,
+            addOns: item.addOns || [],
             quantity: item.quantity || 1
         });
         this.save();
         this.isOpen = true;
-        return true; // signals "newly added"
+        return true;
     },
 
     isInCart(id, variant = null) {
         return this.items.some(i => i.id === id && i.variant === (variant || null));
+    },
+
+    hasItem(id) {
+        return this.items.some(item => item.id === id);
     },
 
     removeItem(index) {

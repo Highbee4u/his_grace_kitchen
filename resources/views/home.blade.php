@@ -14,7 +14,6 @@
     <!-- Hero Experience Section -->
     <section class="relative bg-gradient-to-b from-stone-900 via-[#0a2e1b] to-stone-950 text-white overflow-hidden py-16 lg:py-24">
         <!-- Background Culinary Accents -->
-        <div class="absolute inset-0 opacity-20 pointer-events-none mix-blend-luminosity bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80');"></div>
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
 
@@ -78,6 +77,10 @@
                                 src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80" 
                                 alt="Signature Nigerian Smoky Party Jollof Rice" 
                                 class="w-full h-96 object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                                width="900"
+                                height="600"
+                                fetchpriority="high"
+                                decoding="async"
                             >
                             <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent"></div>
                             
@@ -190,6 +193,7 @@
                                 alt="{{ $dish->name }}" 
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 loading="lazy"
+                                decoding="async"
                             >
                             
                             <!-- Badges -->
@@ -232,19 +236,13 @@
                                 </a>
                                 <button
                                     type="button"
-                                    @click="$store.cart.isInCart({{ $dish->id }}) ? ($store.cart.isOpen = true) : $store.cart.addItem({ id: {{ $dish->id }}, name: '{{ addslashes($dish->name) }}', price: {{ $dish->price_minor }}, currency: '{{ $dish->currency }}', image: '{{ $dish->image }}' })"
-                                    :class="$store.cart.isInCart({{ $dish->id }}) ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-[#0D4A2B] hover:bg-amber-600'"
+                                    :disabled="$store.cart.hasItem({{ $dish->id }})"
+                                    @click="$store.cart.addItem({ id: {{ $dish->id }}, name: '{{ addslashes($dish->name) }}', price: {{ $dish->price_minor }}, currency: '{{ $dish->currency }}', image: '{{ $dish->image }}' })"
+                                    :class="$store.cart.hasItem({{ $dish->id }}) ? 'bg-stone-300 text-stone-600 cursor-not-allowed' : 'bg-[#0D4A2B] hover:bg-amber-600'"
                                     class="inline-flex items-center gap-1.5 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition-colors"
                                 >
-                                    <template x-if="!$store.cart.isInCart({{ $dish->id }})">
-                                        <span>+ Add to Tray</span>
-                                    </template>
-                                    <template x-if="$store.cart.isInCart({{ $dish->id }})">
-                                        <span class="flex items-center gap-1">
-                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                            In Tray
-                                        </span>
-                                    </template>
+                                    <template x-if="!$store.cart.hasItem({{ $dish->id }})"><span>+ Add to Tray</span></template>
+                                    <template x-if="$store.cart.hasItem({{ $dish->id }})"><span>Already in Tray</span></template>
                                 </button>
                             </div>
                         </div>
@@ -269,7 +267,7 @@
                         <div class="bg-stone-800/80 rounded-3xl p-6 border border-stone-700/60 flex flex-col justify-between space-y-6 hover:border-amber-500/50 transition-all">
                             <div class="space-y-4">
                                 <div class="aspect-16/9 rounded-2xl overflow-hidden bg-stone-700">
-                                    <img src="{{ $combo->image }}" alt="{{ $combo->name }}" class="w-full h-full object-cover">
+                                    <img src="{{ $combo->image }}" alt="{{ $combo->name }}" class="w-full h-full object-cover" loading="lazy" decoding="async">
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <h3 class="font-serif text-xl font-bold text-white">{{ $combo->name }}</h3>
@@ -294,19 +292,13 @@
 
                             <button
                                 type="button"
-                                @click="$store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack') ? ($store.cart.isOpen = true) : $store.cart.addItem({ id: 'combo-{{ $combo->id }}', name: '{{ addslashes($combo->name) }}', price: {{ $combo->price_minor }}, currency: '{{ $combo->currency }}', image: '{{ $combo->image }}', variant: 'Combo Pack' })"
-                                :class="$store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack') ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-amber-500 hover:bg-amber-600'"
-                                class="w-full text-stone-950 font-extrabold text-sm py-3 rounded-xl transition-colors shadow-md"
+                                :disabled="$store.cart.hasItem('combo-{{ $combo->id }}')"
+                                @click="$store.cart.addItem({ id: 'combo-{{ $combo->id }}', name: '{{ addslashes($combo->name) }}', price: {{ $combo->price_minor }}, currency: '{{ $combo->currency }}', image: '{{ $combo->image }}', variant: 'Combo Feast Box' })"
+                                :class="$store.cart.hasItem('combo-{{ $combo->id }}') ? 'bg-stone-300 text-stone-600 cursor-not-allowed' : 'bg-amber-500 hover:bg-amber-600 text-stone-950'"
+                                class="w-full font-extrabold text-sm py-3 rounded-xl transition-colors shadow-md"
                             >
-                                <template x-if="!$store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack')">
-                                    <span>Order Combo Tray</span>
-                                </template>
-                                <template x-if="$store.cart.isInCart('combo-{{ $combo->id }}', 'Combo Pack')">
-                                    <span class="flex items-center justify-center gap-1.5 text-white">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        In Tray
-                                    </span>
-                                </template>
+                                <template x-if="!$store.cart.hasItem('combo-{{ $combo->id }}')"><span>Order Combo Tray</span></template>
+                                <template x-if="$store.cart.hasItem('combo-{{ $combo->id }}')"><span>Already in Tray</span></template>
                             </button>
                         </div>
                     @endforeach

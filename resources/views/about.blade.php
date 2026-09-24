@@ -67,6 +67,8 @@
                             src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80" 
                             alt="Nigerian Food Feast" 
                             class="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                         >
                     </div>
                     <div class="absolute -bottom-6 -left-6 bg-stone-900 text-white p-6 rounded-2xl shadow-xl max-w-xs border border-stone-800 hidden sm:block">
@@ -89,6 +91,8 @@
                         src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80" 
                         alt="Diaspora Express Chilled Packing" 
                         class="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                     >
                 </div>
                 <div class="order-1 lg:order-2 space-y-6">

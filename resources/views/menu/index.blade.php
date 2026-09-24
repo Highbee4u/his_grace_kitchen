@@ -12,7 +12,6 @@
 
 @section('content')
 <div class="bg-gradient-to-r from-[#0D4A2B] via-[#0f5431] to-[#0D4A2B] text-white py-10 sm:py-14 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 pointer-events-none bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1200&q=60');"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
         <span class="inline-flex items-center gap-1.5 bg-amber-500/20 border border-amber-400/30 text-amber-300 text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
@@ -127,6 +126,7 @@
                             alt="{{ $dish->name }}" 
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy"
+                            decoding="async"
                         >
                         <div class="absolute top-3 left-3 flex flex-wrap gap-1">
                             @if (!empty($dish->tags) && in_array('Popular', (array)$dish->tags))
@@ -171,19 +171,13 @@
                             </a>
                             <button
                                 type="button"
-                                @click="$store.cart.isInCart({{ $dish->id }}) ? ($store.cart.isOpen = true) : $store.cart.addItem({ id: {{ $dish->id }}, name: '{{ addslashes($dish->name) }}', price: {{ $dish->price_minor }}, currency: '{{ $dish->currency }}', image: '{{ $dish->image }}' })"
-                                :class="$store.cart.isInCart({{ $dish->id }}) ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-[#0D4A2B] hover:bg-amber-600'"
+                                :disabled="$store.cart.hasItem({{ $dish->id }})"
+                                @click="$store.cart.addItem({ id: {{ $dish->id }}, name: '{{ addslashes($dish->name) }}', price: {{ $dish->price_minor }}, currency: '{{ $dish->currency }}', image: '{{ $dish->image }}' })"
+                                :class="$store.cart.hasItem({{ $dish->id }}) ? 'bg-stone-300 text-stone-600 cursor-not-allowed' : 'bg-[#0D4A2B] hover:bg-amber-600'"
                                 class="inline-flex items-center gap-1.5 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition-colors"
                             >
-                                <template x-if="!$store.cart.isInCart({{ $dish->id }})">
-                                    <span>+ Add to Tray</span>
-                                </template>
-                                <template x-if="$store.cart.isInCart({{ $dish->id }})">
-                                    <span class="flex items-center gap-1">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        In Tray
-                                    </span>
-                                </template>
+                                <template x-if="!$store.cart.hasItem({{ $dish->id }})"><span>+ Add to Tray</span></template>
+                                <template x-if="$store.cart.hasItem({{ $dish->id }})"><span>Already in Tray</span></template>
                             </button>
                         </div>
                     </div>
