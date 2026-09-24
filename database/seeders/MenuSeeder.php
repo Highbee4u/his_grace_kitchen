@@ -601,40 +601,42 @@ class MenuSeeder extends Seeder
         }
 
         // 7. Delivery Zones
+        // Keep historical orders linked to their original zones, but hide legacy zones from new checkout orders.
+        DeliveryZone::query()->update(['is_active' => false]);
         $zones = [
             [
-                'name' => 'Lagos Island Express (Ikoyi, VI, Lekki Phase 1)',
-                'areas' => ['Ikoyi', 'Victoria Island', 'Lekki Phase 1', 'Oniru', 'Banana Island'],
-                'fee_minor' => 350000,
-                'currency' => 'NGN',
+                'name' => 'East London Local (DA18 & Bexley)',
+                'areas' => ['Erith', 'Bexley', 'Welling', 'Woolwich', 'Dartford'],
+                'fee_minor' => 499,
+                'currency' => 'GBP',
                 'lead_time_minutes' => 45,
                 'allow_pay_on_delivery' => true,
                 'is_active' => true,
             ],
             [
-                'name' => 'Lagos Mainland Central (Ikeja, Surulere, Yaba)',
-                'areas' => ['Ikeja', 'GRA Ikeja', 'Surulere', 'Yaba', 'Maryland', 'Gbagada'],
-                'fee_minor' => 400000,
-                'currency' => 'NGN',
+                'name' => 'South East London',
+                'areas' => ['Greenwich', 'Lewisham', 'Southwark', 'Newham', 'Tower Hamlets'],
+                'fee_minor' => 799,
+                'currency' => 'GBP',
                 'lead_time_minutes' => 60,
                 'allow_pay_on_delivery' => true,
                 'is_active' => true,
             ],
             [
-                'name' => 'Lagos Metro Greater Area (Ajah, Festac, Magodo)',
-                'areas' => ['Ajah', 'Sangotedo', 'Festac Town', 'Magodo', 'Ogba', 'Agege'],
-                'fee_minor' => 600000,
-                'currency' => 'NGN',
+                'name' => 'Greater London Delivery',
+                'areas' => ['Central London', 'North London', 'West London', 'Essex', 'Kent'],
+                'fee_minor' => 1299,
+                'currency' => 'GBP',
                 'lead_time_minutes' => 90,
                 'allow_pay_on_delivery' => false,
                 'is_active' => true,
             ],
             [
-                'name' => 'UK Express Courier (London & UK-wide)',
+                'name' => 'UK Nationwide Courier',
                 'areas' => ['Greater London', 'Manchester', 'Birmingham', 'UK Nationwide'],
-                'fee_minor' => 4500000, // ₦45,000 / ~£25
-                'currency' => 'NGN',
-                'lead_time_minutes' => 2880, // 48 hrs
+                'fee_minor' => 2499,
+                'currency' => 'GBP',
+                'lead_time_minutes' => 2880,
                 'allow_pay_on_delivery' => false,
                 'is_active' => true,
             ],
@@ -644,7 +646,7 @@ class MenuSeeder extends Seeder
                 'fee_minor' => 6500000, // ₦65,000 / ~$40
                 'lead_time_minutes' => 4320, // 72 hrs
                 'allow_pay_on_delivery' => false,
-                'is_active' => true,
+                'is_active' => false,
             ],
         ];
 

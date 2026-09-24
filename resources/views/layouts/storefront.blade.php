@@ -4,24 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/his-grace-kitchen-logo.jpeg') }}">
 
-    <title>@yield('title', ($siteName ?? 'His Grace Kitchen LTD') . ' | Authentic Nigerian Cuisine & Diaspora Delivery')</title>
-    <meta name="description" content="@yield('meta_description', 'Handcrafted Nigerian culinary classics: Smoky Party Jollof, Egusi Soup, Tender Flame-Grilled Suya, and Owambe Event Catering. Fast delivery across Nigeria and express courier to the UK, US, Canada, and Europe.')">
+    <title>@yield('title', ($siteName ?? 'His Grace Kitchen') . ' | Authentic African Cuisine in London')</title>
+    <meta name="description" content="@yield('meta_description', 'Handcrafted Nigerian and West African dishes prepared fresh in London, with local delivery, collection, and event catering.')">
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
     <!-- Open Graph & Social -->
-    <meta property="og:site_name" content="{{ $siteName ?? 'His Grace Kitchen LTD' }}">
-    <meta property="og:title" content="@yield('title', ($siteName ?? 'His Grace Kitchen LTD') . ' | Authentic Nigerian Cuisine')">
-    <meta property="og:description" content="@yield('meta_description', 'Smoky Party Jollof, Rich Native Soups, and Authentic Grills delivered hot to your doorstep.')">
+    <meta property="og:site_name" content="{{ $siteName ?? 'His Grace Kitchen' }}">
+    <meta property="og:title" content="@yield('title', ($siteName ?? 'His Grace Kitchen') . ' | Authentic African Cuisine')">
+    <meta property="og:description" content="@yield('meta_description', 'Smoky Party Jollof, rich native soups, and authentic grills prepared fresh in London.')">
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="@yield('canonical', url()->current())">
     <meta property="og:image" content="@yield('og_image', asset('images/hero-jollof.jpg'))">
-    <meta property="og:locale" content="en_NG">
+    <meta property="og:locale" content="en_GB">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('title', ($siteName ?? 'His Grace Kitchen LTD') . ' | Authentic Nigerian Cuisine')">
-    <meta name="twitter:description" content="@yield('meta_description', 'Smoky Party Jollof, Rich Native Soups, and Authentic Grills delivered hot to your doorstep.')">
+    <meta name="twitter:title" content="@yield('title', ($siteName ?? 'His Grace Kitchen') . ' | Authentic African Cuisine')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Smoky Party Jollof, rich native soups, and authentic grills prepared fresh in London.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/hero-jollof.jpg'))">
 
     <!-- Structured Data (JSON-LD) -->
@@ -57,7 +58,7 @@
                     <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                     </svg>
-                    Kitchen Open: Mon–Sun 10:00 AM – 10:00 PM
+                    London Kitchen Open: Mon–Sun 10:00 AM – 10:00 PM
                 </span>
 
                 <div class="flex items-center gap-1.5 bg-black/25 px-2.5 py-1 rounded-full border border-white/10" x-data>
@@ -89,14 +90,10 @@
             <div class="flex items-center justify-between h-20 gap-4">
                 <!-- Brand Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0D4A2B] flex items-center justify-center text-amber-400 shadow-md group-hover:scale-105 transition-transform duration-200 shrink-0">
-                        <span class="font-serif text-base sm:text-lg font-extrabold tracking-tighter">
-                            {{ strtoupper(collect(explode(' ', $siteName ?? 'HG'))->map(fn($w) => substr($w, 0, 1))->take(2)->join('')) }}
-                        </span>
-                    </div>
+                    <img src="{{ asset('images/his-grace-kitchen-logo.jpeg') }}" alt="{{ $siteName ?? 'His Grace Kitchen' }} logo" class="h-14 w-14 rounded-full object-cover shadow-md ring-1 ring-[#2D7478]/30 transition-transform duration-200 group-hover:scale-105 shrink-0">
                     <div class="shrink-0">
                         <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-stone-900 block leading-tight whitespace-nowrap">
-                            {{ $siteName ?? 'His Grace Kitchen LTD' }}
+                            {{ $siteName ?? 'His Grace Kitchen' }}
                         </span>
                         <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-[#0D4A2B] block whitespace-nowrap">
                             Authentic Native Flavors
@@ -403,7 +400,7 @@
         {{-- Pulse ring --}}
         <span class="absolute inset-0 rounded-full bg-emerald-500 opacity-30 animate-ping"></span>
         <a
-            href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! I would like to place a food order or catering enquiry.') }}"
+            href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '447988575682') }}?text={{ urlencode('Hello His Grace Kitchen! I would like to place a food order or catering enquiry.') }}"
             target="_blank"
             rel="noopener noreferrer"
             class="relative flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white pl-4 pr-5 py-3 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
@@ -426,13 +423,13 @@
                         <div class="w-10 h-10 rounded-full bg-[#0D4A2B] flex items-center justify-center text-amber-400 font-serif text-base font-extrabold shadow-inner border border-white/10">
                             {{ strtoupper(collect(explode(' ', $siteName ?? 'NK'))->map(fn($w) => substr($w, 0, 1))->take(2)->join('')) }}
                         </div>
-                        <span class="font-serif text-2xl font-bold text-white tracking-tight">{{ $siteName ?? 'His Grace Kitchen LTD' }}</span>
+                        <span class="font-serif text-2xl font-bold text-white tracking-tight">{{ $siteName ?? 'His Grace Kitchen' }}</span>
                     </div>
                     <p class="text-stone-400 text-sm leading-relaxed max-w-sm">
                         Crafting authentic Nigerian gastronomic experiences with slow-simmered rich native soups, firewood-infused smoky jollof, and succulent charcoal grills. Serving food lovers locally and worldwide across the UK, USA, Canada, and Europe.
                     </p>
                     <div class="pt-2 text-xs text-amber-400/90 font-medium">
-                        🇳🇬 Base Kitchen: Lagos, Nigeria • ✈️ International Air Cargo Express
+                        📍 Unit 15 Kencot Close, Business Park Kencot Way, DA18 4AB, London
                     </div>
                 </div>
 
@@ -464,8 +461,9 @@
                 <div class="space-y-3">
                     <h3 class="text-white font-bold text-sm uppercase tracking-wider font-serif">Connect</h3>
                     <ul class="space-y-2 text-sm text-stone-400">
-                        <li>Email: <a href="mailto:{{ $contactEmail ?? 'orders@africankitchen.test' }}" class="text-amber-400 hover:underline">{{ $contactEmail ?? 'orders@africankitchen.test' }}</a></li>
-                        <li>WhatsApp Orders: <span class="text-stone-300 font-semibold">{{ $whatsappNumber ?? '+234 800 000 0000' }}</span></li>
+                        <li>Email: <a href="mailto:{{ $contactEmail ?? 'gracekitchenltd@gmail.com' }}" class="text-amber-400 hover:underline">{{ $contactEmail ?? 'gracekitchenltd@gmail.com' }}</a></li>
+                        <li>Phone: <span class="text-stone-300 font-semibold">{{ $contactPhone ?? '07988575682 / 07508282876' }}</span></li>
+                        <li>Instagram: <a href="https://instagram.com/gracekitchenltd" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">@gracekitchenltd</a></li>
                         <li><a href="{{ route('reviews.index') }}" class="hover:text-amber-400 transition-colors">Customer Reviews & Ratings</a></li>
                         <li class="pt-2">
                             <a href="{{ url('/admin') }}" class="inline-flex items-center gap-1.5 text-xs bg-stone-800 hover:bg-stone-700 text-stone-300 px-3 py-1.5 rounded border border-stone-700">
@@ -482,7 +480,7 @@
             <!-- Bottom Copyright -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-stone-500">
                 <div class="flex flex-col sm:flex-row items-center gap-4">
-                    <p>&copy; {{ date('Y') }} {{ $siteName ?? 'His Grace Kitchen LTD' }}. All rights reserved.</p>
+                    <p>&copy; {{ date('Y') }} {{ $siteName ?? 'His Grace Kitchen' }}. All rights reserved.</p>
                     <!-- Social Icons -->
                     <div class="flex items-center gap-3">
                         <a href="#" aria-label="Instagram" class="w-7 h-7 rounded-full bg-stone-800 hover:bg-amber-500 text-stone-400 hover:text-stone-950 flex items-center justify-center transition-colors">

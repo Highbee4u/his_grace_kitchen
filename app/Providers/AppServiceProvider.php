@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
             try {
                 if (Schema::hasTable('site_settings')) {
                     $siteName = SiteSetting::getSiteName();
-                    $whatsapp = SiteSetting::get('whatsapp_number', '+2348031234567');
-                    $phone = SiteSetting::get('phone', '+234 803 123 4567');
-                    $email = SiteSetting::get('contact_email', 'orders@africankitchen.test');
-                    $address = SiteSetting::get('address', '14 Admiralty Way, Lekki Phase 1, Lagos, Nigeria');
+                    $whatsapp = SiteSetting::get('whatsapp_number', '+447988575682');
+                    $phone = SiteSetting::get('phone', '07988575682 / 07508282876');
+                    $email = SiteSetting::get('contact_email', 'gracekitchenltd@gmail.com');
+                    $address = SiteSetting::get('address', 'Unit 15 Kencot Close, Business Park Kencot Way, DA18 4AB, London, UK');
 
                     $view->with([
                         'siteName' => $siteName,

@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @section('title', 'Welcome back | Nigerian Kitchen')
+    @section('title', 'Welcome back | His Grace Kitchen')
 
     <div class="mb-8">
         <span class="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-600">Welcome back</span>

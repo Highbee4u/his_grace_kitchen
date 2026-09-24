@@ -66,7 +66,7 @@
                         Once transferred, send a screenshot of your bank transfer receipt via WhatsApp for instant automated release of your kitchen ticket:
                     </p>
                     <a 
-                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! Here is my payment receipt for order #' . $order->order_number . ' (' . \App\Support\Money::format($order->total_minor, $order->currency) . ')') }}" 
+                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '447988575682') }}?text={{ urlencode('Hello His Grace Kitchen! Here is my payment receipt for order #' . $order->order_number . ' (' . \App\Support\Money::format($order->total_minor, $order->currency) . ')') }}"
                         target="_blank" 
                         rel="noopener noreferrer"
                         class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl text-sm shadow transition-colors"

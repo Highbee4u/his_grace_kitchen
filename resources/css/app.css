@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--kitchen-teal: #2d7478;
+	--kitchen-teal-dark: #245b5f;
+	--kitchen-teal-soft: #e8f3f2;
+}
+
+/* Keep the existing utility-based templates aligned with the supplied teal brand. */
+.bg-\[\#0D4A2B\] { background-color: var(--kitchen-teal) !important; }
+.bg-\[\#09351e\] { background-color: var(--kitchen-teal-dark) !important; }
+.bg-\[\#125834\] { background-color: #3b8588 !important; }
+.text-\[\#0D4A2B\] { color: var(--kitchen-teal) !important; }
+.border-\[\#0D4A2B\] { border-color: var(--kitchen-teal) !important; }
+.hover\:bg-\[\#09351e\]:hover { background-color: var(--kitchen-teal-dark) !important; }
+.hover\:text-\[\#0D4A2B\]:hover { color: var(--kitchen-teal) !important; }
+.focus\:border-\[\#0D4A2B\]:focus { border-color: var(--kitchen-teal) !important; }
+.focus\:ring-\[\#0D4A2B\]:focus { --tw-ring-color: var(--kitchen-teal) !important; }

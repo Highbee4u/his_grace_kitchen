@@ -172,7 +172,7 @@
                 <!-- Direct Concierge Link -->
                 <div class="pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
                     <a 
-                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello! I would like to discuss catering proposal #' . $cateringRequest->reference) }}" 
+                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '447988575682') }}?text={{ urlencode('Hello! I would like to discuss catering proposal #' . $cateringRequest->reference) }}"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex items-center gap-2 text-emerald-800 font-bold hover:underline"

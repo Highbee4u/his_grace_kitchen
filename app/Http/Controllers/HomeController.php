@@ -50,7 +50,7 @@ class HomeController extends Controller
             : collect($testimonials)->chunk(3);
 
         $faqs = SiteSetting::get('faqs', []);
-        $whatsappNumber = SiteSetting::get('whatsapp_number', '+2348000000000');
+        $whatsappNumber = SiteSetting::get('whatsapp_number', '+447988575682');
 
         return view('home', compact(
             'categories',

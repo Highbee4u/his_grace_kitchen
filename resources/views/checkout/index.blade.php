@@ -1,13 +1,13 @@
 @extends('layouts.storefront')
 
 @section('title', 'Secure Checkout | His Grace Kitchen LTD')
-@section('meta_description', 'Complete your authentic Nigerian food order with fast local delivery or international diaspora courier.')
+@section('meta_description', 'Complete your His Grace Kitchen order for London delivery or collection from our DA18 kitchen.')
 
 @section('content')
     <div class="bg-[#FCFBF7] py-12 sm:py-16" x-data="{
         fulfilmentType: '{{ old('fulfilment_type', 'delivery') }}',
         selectedZoneId: '{{ old('delivery_zone_id', $deliveryZones->first()?->id ?? '') }}',
-        paymentMethod: '{{ old('payment_method', 'paystack') }}',
+        paymentMethod: '{{ old('payment_method', 'stripe') }}',
         zones: {{ Js::from($deliveryZones) }},
         
         get selectedZone() {
@@ -74,7 +74,7 @@
                     </svg>
                 </div>
                 <h2 class="font-serif text-2xl font-bold text-stone-900 mb-2">Your food tray is empty</h2>
-                <p class="text-stone-500 text-sm mb-6">Select your favorite Nigerian dishes, combos, or catering packages before checking out.</p>
+                <p class="text-stone-500 text-sm mb-6">Select your favorite dishes, combos, or catering packages before checking out.</p>
                 <a href="{{ route('menu.index') }}" class="inline-flex items-center gap-2 bg-[#0D4A2B] text-white px-6 py-3.5 rounded-full font-bold text-sm shadow hover:bg-[#09351e]">
                     Browse Dishes
                 </a>
@@ -143,7 +143,7 @@
                                     id="customer_phone" 
                                     value="{{ old('customer_phone') }}"
                                     required 
-                                    placeholder="+234 803 123 4567 or +44 7911..."
+                                    placeholder="07988 575 682 or 07508 282 876"
                                     class="w-full rounded-xl border-stone-300 focus:border-[#0D4A2B] focus:ring-[#0D4A2B] text-sm py-2.5"
                                 >
                                 <p class="text-stone-400 text-[11px] mt-1">Our dispatch rider and kitchen will send live updates to this number.</p>
@@ -181,7 +181,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                 </svg>
                                 <span class="text-sm">Kitchen Pickup (Free)</span>
-                                <span class="text-xs font-normal text-stone-500">Admiralty Way, Lekki Phase 1</span>
+                                <span class="text-xs font-normal text-stone-500">Business Park Kencot Way, DA18 4AB</span>
                             </label>
                         </div>
 
@@ -214,7 +214,7 @@
                                     name="delivery_address_street" 
                                     id="delivery_address_street" 
                                     value="{{ old('delivery_address_street') }}"
-                                    placeholder="e.g. 14 Admiralty Way, Flat 3B"
+                                    placeholder="e.g. Unit 15 Kencot Close"
                                     class="w-full rounded-xl border-stone-300 focus:border-[#0D4A2B] focus:ring-[#0D4A2B] text-sm py-2.5"
                                 >
                             </div>
@@ -228,8 +228,8 @@
                                         type="text" 
                                         name="delivery_address_city" 
                                         id="delivery_address_city" 
-                                        value="{{ old('delivery_address_city', 'Lagos') }}"
-                                        placeholder="Lekki Phase 1 / London"
+                                        value="{{ old('delivery_address_city', 'London') }}"
+                                        placeholder="Town or borough"
                                         class="w-full rounded-xl border-stone-300 focus:border-[#0D4A2B] focus:ring-[#0D4A2B] text-sm py-2.5"
                                     >
                                 </div>
@@ -241,8 +241,8 @@
                                         type="text" 
                                         name="delivery_address_state" 
                                         id="delivery_address_state" 
-                                        value="{{ old('delivery_address_state', 'Lagos State, Nigeria') }}"
-                                        placeholder="Lagos / Greater London / Georgia"
+                                        value="{{ old('delivery_address_state', 'England') }}"
+                                        placeholder="County, e.g. Greater London"
                                         class="w-full rounded-xl border-stone-300 focus:border-[#0D4A2B] focus:ring-[#0D4A2B] text-sm py-2.5"
                                     >
                                 </div>
@@ -266,8 +266,8 @@
                         <!-- Pickup Specific Notice -->
                         <div x-show="fulfilmentType === 'pickup'" class="p-4 rounded-2xl bg-amber-50 border border-amber-200/70 text-xs text-stone-700 space-y-1">
                             <strong class="font-bold text-amber-950 block">Pickup Location:</strong>
-                            <p>His Grace Kitchen LTD Central Base, Admiralty Way, Lekki Phase 1, Lagos.</p>
-                            <p class="text-stone-500">Your meal will be packaged in thermal containers ready for pickup within 35–45 minutes of confirmation.</p>
+                            <p>Unit 15 Kencot Close, Business Park Kencot Way, DA18 4AB, London.</p>
+                            <p class="text-stone-500">Your meal will be prepared and ready for collection within 35–45 minutes of confirmation.</p>
                         </div>
                     </div>
 
@@ -288,7 +288,7 @@
                                     <input type="radio" name="payment_method" value="paystack" class="text-[#0D4A2B] focus:ring-[#0D4A2B]" x-model="paymentMethod">
                                     <div>
                                         <span class="font-bold text-sm text-stone-900 block">Paystack (Cards, USSD, Bank Transfer)</span>
-                                        <span class="text-xs text-stone-500">Fast, instant authorization in Nigerian Naira (₦)</span>
+                                        <span class="text-xs text-stone-500">Fast, secure card payment in British pounds (£)</span>
                                     </div>
                                 </div>
                                 <span class="text-xs font-extrabold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-md">NGN</span>

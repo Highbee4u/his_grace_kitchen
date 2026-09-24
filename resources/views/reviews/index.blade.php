@@ -187,7 +187,7 @@
                                 name="customer_location" 
                                 id="customer_location" 
                                 value="{{ old('customer_location') }}" 
-                                placeholder="e.g. Lekki Phase 1, Lagos or South London, UK"
+                                placeholder="e.g. Bexley, Greenwich, or South London, UK"
                                 class="w-full rounded-xl border-stone-300 focus:border-[#0D4A2B] focus:ring-[#0D4A2B] text-sm py-2.5"
                             >
                         </div>

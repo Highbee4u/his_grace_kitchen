@@ -22,7 +22,7 @@
                 The Soul of <span class="text-amber-400">Authentic Nigerian Gastronomy</span>
             </h1>
             <p class="text-stone-300 text-base sm:text-xl max-w-3xl mx-auto font-light leading-relaxed">
-                We founded His Grace Kitchen LTD with an unyielding obsession: preserving the true, untamed aromas of traditional Nigerian home cooking and bringing them hot to tables in Lagos, London, New York, and beyond.
+                We founded His Grace Kitchen with an unyielding obsession: preserving the true, untamed aromas of traditional Nigerian home cooking and bringing them fresh to tables across London and the UK.
             </p>
         </div>
     </section>

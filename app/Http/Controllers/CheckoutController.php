@@ -190,7 +190,7 @@ class CheckoutController extends Controller
                 'discount_minor' => 0,
                 'tax_minor' => 0,
                 'total_minor' => $totalMinor,
-                'currency' => $validated['currency'] ?? 'NGN',
+                'currency' => $validated['currency'] ?? 'GBP',
                 'notes' => $validated['notes'] ?? null,
             ]);
 

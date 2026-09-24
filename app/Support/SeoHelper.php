@@ -13,33 +13,33 @@ class SeoHelper
     public static function restaurantSchema(): array
     {
         $siteName = SiteSetting::getSiteName();
-        $phone = SiteSetting::get('phone', '+234 800 000 0000');
-        $email = SiteSetting::get('contact_email', 'orders@africankitchen.test');
-        $address = SiteSetting::get('address', '14 Admiralty Way, Lekki Phase 1, Lagos, Nigeria');
+        $phone = SiteSetting::get('phone', '07988575682 / 07508282876');
+        $email = SiteSetting::get('contact_email', 'gracekitchenltd@gmail.com');
+        $address = SiteSetting::get('address', 'Unit 15 Kencot Close, Business Park Kencot Way, DA18 4AB, London, UK');
 
         return [
             '@context' => 'https://schema.org',
             '@type' => 'Restaurant',
             'name' => $siteName,
-            'image' => asset('images/logo.png'),
+            'image' => asset('images/his-grace-kitchen-logo.jpeg'),
             '@id' => url('/'),
             'url' => url('/'),
             'telephone' => $phone,
             'email' => $email,
-            'priceRange' => '₦₦ - ₦₦₦₦',
+            'priceRange' => '££ - ££££',
             'servesCuisine' => ['Nigerian', 'West African', 'Traditional African'],
             'address' => [
                 '@type' => 'PostalAddress',
                 'streetAddress' => $address,
-                'addressLocality' => 'Lekki',
-                'addressRegion' => 'Lagos',
-                'postalCode' => '105102',
-                'addressCountry' => 'NG',
+                'addressLocality' => 'London',
+                'addressRegion' => 'England',
+                'postalCode' => 'DA18 4AB',
+                'addressCountry' => 'GB',
             ],
             'geo' => [
                 '@type' => 'GeoCoordinates',
-                'latitude' => 6.4474,
-                'longitude' => 3.4735,
+                'latitude' => 51.489,
+                'longitude' => 0.151,
             ],
             'openingHoursSpecification' => [
                 [
@@ -59,8 +59,8 @@ class SeoHelper
             ],
             'hasMenu' => url('/menu'),
             'acceptsReservations' => 'True',
-            'currenciesAccepted' => 'NGN, GBP, USD, CAD, EUR',
-            'paymentAccepted' => 'Cash, Credit Card, Bank Transfer, Paystack, Stripe',
+            'currenciesAccepted' => 'GBP, USD, CAD, EUR',
+            'paymentAccepted' => 'Cash, Credit Card, Bank Transfer, Stripe',
         ];
     }
 
@@ -81,7 +81,7 @@ class SeoHelper
             'offers' => [
                 '@type' => 'Offer',
                 'price' => $priceDecimal,
-                'priceCurrency' => 'NGN',
+                'priceCurrency' => $item->currency ?? SiteSetting::get('base_currency', 'GBP'),
                 'priceValidUntil' => now()->addYear()->format('Y-m-d'),
                 'availability' => $item->is_available ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
                 'url' => route('menu.show', $item->slug),

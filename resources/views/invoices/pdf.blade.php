@@ -178,12 +178,13 @@
         <table>
             <tr>
                 <td style="width: 55%; vertical-align: top;">
-                    <div class="brand-title">His Grace Kitchen LTD</div>
+                    <img src="{{ public_path('images/his-grace-kitchen-logo.jpeg') }}" alt="His Grace Kitchen" style="width: 76px; height: 76px; object-fit: contain; margin-bottom: 6px;">
+                    <div class="brand-title">His Grace Kitchen</div>
                     <div class="brand-subtitle">Authentic Native Gastronomy & Catering</div>
                     <div class="brand-address">
-                        Admiralty Way, Lekki Phase 1, Lagos, Nigeria<br>
-                        Email: hello@example.com • WhatsApp Orders: +234 800 000 0000<br>
-                        RC: 1892044 • www.nigeriankitchen.test
+                        Unit 15 Kencot Close, Business Park Kencot Way, DA18 4AB, London, UK<br>
+                        Email: gracekitchenltd@gmail.com • Phone: 07988575682 / 07508282876<br>
+                        Instagram: @gracekitchenltd
                     </div>
                 </td>
                 <td style="width: 45%; vertical-align: top;">
@@ -223,11 +224,11 @@
                     <div class="client-detail">
                         @if($invoice->order && $invoice->order->fulfilment_type === 'delivery')
                             {{ $invoice->order->delivery_address['street'] ?? 'Street Address' }}<br>
-                            {{ $invoice->order->delivery_address['city'] ?? '' }}, {{ $invoice->order->delivery_address['state'] ?? 'Nigeria' }}<br>
+                            {{ $invoice->order->delivery_address['city'] ?? '' }}, {{ $invoice->order->delivery_address['state'] ?? 'England' }}<br>
                             Zone: {{ $invoice->order->deliveryZone?->name ?? 'Standard Zone' }}
                         @else
                             Kitchen Pickup Counter<br>
-                            Admiralty Way, Lekki Phase 1, Lagos
+                            Unit 15 Kencot Close, DA18 4AB, London
                         @endif
                     </div>
                 </td>

@@ -52,7 +52,7 @@
                         'paid' => ['label' => 'Payment Verified', 'desc' => 'Queued for head chef'],
                         'confirmed' => ['label' => 'Order Confirmed', 'desc' => 'Ingredients prepped'],
                         'preparing' => ['label' => 'Simmering in Kitchen', 'desc' => 'Fresh firewood cooking'],
-                        'out_for_delivery' => ['label' => $order->fulfilment_type === 'pickup' ? 'Ready for Pickup' : 'Out for Delivery', 'desc' => $order->fulfilment_type === 'pickup' ? 'Waiting at Lekki Kitchen' : 'Rider dispatched with thermal box'],
+                        'out_for_delivery' => ['label' => $order->fulfilment_type === 'pickup' ? 'Ready for Collection' : 'Out for Delivery', 'desc' => $order->fulfilment_type === 'pickup' ? 'Waiting at the London kitchen' : 'Rider dispatched with thermal box'],
                         'delivered' => ['label' => 'Delivered', 'desc' => 'Enjoy your meal!'],
                     ];
 
@@ -173,7 +173,7 @@
                         @else
                             <p class="text-stone-600 leading-relaxed">
                                 <strong class="text-stone-800 block">Kitchen Pickup Counter:</strong>
-                                Admiralty Way, Lekki Phase 1, Lagos, Nigeria.<br>
+                                Unit 15 Kencot Close, Business Park Kencot Way, DA18 4AB, London, UK.<br>
                                 Please present Order #{{ $order->order_number }} to kitchen staff.
                             </p>
                         @endif
@@ -198,7 +198,7 @@
                 <!-- WhatsApp Updates CTA -->
                 <div class="mt-8 pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <a 
-                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! I would like an update on my order #' . $order->order_number) }}" 
+                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '447988575682') }}?text={{ urlencode('Hello His Grace Kitchen! I would like an update on my order #' . $order->order_number) }}"
                         target="_blank" 
                         rel="noopener noreferrer"
                         class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-5 rounded-xl text-xs shadow transition-colors"
@@ -271,7 +271,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Location</label>
-                                <input type="text" name="customer_location" value="{{ $order->delivery_address['city'] ?? '' }}" placeholder="e.g. Lekki Phase 1, Lagos" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                                <input type="text" name="customer_location" value="{{ $order->delivery_address['city'] ?? '' }}" placeholder="e.g. Bexley or South London" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
                             </div>
                         </div>
 

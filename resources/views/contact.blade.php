@@ -1,7 +1,7 @@
 @extends('layouts.storefront')
 
 @section('title', 'Contact Us & Kitchen Locations | His Grace Kitchen LTD')
-@section('meta_description', 'Get in touch with His Grace Kitchen LTD. Lagos central kitchen address, customer care WhatsApp, email, opening hours, and diaspora logistics inquiries.')
+@section('meta_description', 'Get in touch with His Grace Kitchen in London. Find our DA18 kitchen address, phone numbers, email, Instagram, and opening hours.')
 
 @push('json_ld')
     {!! \App\Support\SeoHelper::render(\App\Support\SeoHelper::breadcrumbSchema([
@@ -22,7 +22,7 @@
                 Get in Touch with <span class="text-amber-400">Our Kitchen</span>
             </h1>
             <p class="text-stone-300 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                Have questions about daily delivery, event catering packages, dietary accommodations, or overseas diaspora shipments? Connect with us via WhatsApp, phone, or email.
+                Have questions about London delivery, collection, event catering, or dietary accommodations? Connect with us via WhatsApp, phone, email, or Instagram.
             </p>
         </div>
     </section>
@@ -43,13 +43,14 @@
                         Fastest way to order, modify an active order, or enquire about today's fresh soup pot.
                     </p>
                     <a 
-                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello His Grace Kitchen LTD! I have an inquiry.') }}"
+                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '447988575682') }}?text={{ urlencode('Hello His Grace Kitchen! I have an inquiry.') }}"
                         target="_blank"
                         rel="noopener noreferrer" 
                         class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-sm shadow transition-colors"
                     >
                         Chat on WhatsApp
                     </a>
+                    <a href="tel:07988575682" class="mt-3 text-sm font-bold text-[#2D7478] hover:text-[#245B5F]">07988575682 / 07508282876</a>
                 </div>
 
                 <!-- Contact Card 2: Email & Business Enquiries -->
@@ -64,10 +65,10 @@
                         For corporate accounts, invoice questions, supplier partnerships, and event contracts.
                     </p>
                     <a 
-                        href="mailto:orders@nigeriankitchen.test" 
+                        href="mailto:{{ $contactEmail ?? 'gracekitchenltd@gmail.com' }}"
                         class="w-full inline-flex items-center justify-center gap-2 bg-[#0D4A2B] hover:bg-[#09351e] text-white font-bold py-3 px-4 rounded-xl text-sm shadow transition-colors"
                     >
-                        hello@example.com
+                        {{ $contactEmail ?? 'gracekitchenltd@gmail.com' }}
                     </a>
                 </div>
 
@@ -81,9 +82,9 @@
                     </div>
                     <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Central Kitchen Base</h3>
                     <p class="text-stone-500 text-xs sm:text-sm mb-6 leading-relaxed">
-                        Admiralty Way, Lekki Phase 1, Lagos, Nigeria.<br>
+                        Unit 15 Kencot Close, Business Park Kencot Way, DA18 4AB, London, UK.<br>
                         <strong class="text-stone-700 block mt-1">Kitchen Hours:</strong>
-                        Mon – Sun: 10:00 AM – 10:00 PM (WAT)
+                        Mon – Sun: 10:00 AM – 10:00 PM (UK time)
                     </p>
                     <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -101,7 +102,7 @@
                             Where We Deliver
                         </h2>
                         <p class="text-stone-600 text-sm mt-2 max-w-xl">
-                            Local riders cover all Lagos zones with thermal insulated bags. International express cargo covers major metro centers in the United Kingdom, United States, Canada, and Western Europe.
+                            We deliver across London and surrounding areas, with collection available from our DA18 kitchen. Ask us about event catering for venues across the UK.
                         </p>
                     </div>
                     <div class="flex flex-wrap items-center gap-3">

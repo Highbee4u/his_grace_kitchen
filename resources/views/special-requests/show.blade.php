@@ -121,7 +121,7 @@
                 <!-- Footer WhatsApp Direct Link -->
                 <div class="pt-6 border-t border-stone-200 flex items-center justify-between text-xs">
                     <a 
-                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '2348000000000') }}?text={{ urlencode('Hello! I would like an update on my custom dish request #' . $specialRequest->reference) }}" 
+                        href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappNumber ?? '447988575682') }}?text={{ urlencode('Hello! I would like an update on my custom dish request #' . $specialRequest->reference) }}"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="text-emerald-800 font-bold hover:underline"

@@ -1,7 +1,7 @@
 @extends('layouts.storefront')
 
-@section('title', 'His Grace Kitchen LTD | Authentic Nigerian Cuisine, Fast Delivery & Diaspora Shipping')
-@section('meta_description', 'Experience authentic Nigerian cuisine: Firewood Smoky Jollof, Rich Egusi, Pounded Yam, Flame-Grilled Suya, and Owambe Event Catering. Express worldwide delivery.')
+@section('title', 'His Grace Kitchen | Authentic Nigerian Cuisine in London')
+@section('meta_description', 'Experience authentic Nigerian cuisine prepared fresh in London: Smoky Jollof, Egusi, Pounded Yam, Suya, and event catering with local delivery and collection.')
 
 @push('json_ld')
     {!! \App\Support\SeoHelper::render(\App\Support\SeoHelper::restaurantSchema()) !!}
@@ -375,7 +375,7 @@
                 <div class="space-y-2">
                     <span class="text-xs uppercase font-extrabold tracking-widest text-[#0D4A2B]">Verified Reviews</span>
                     <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">What Our Food Lovers Say</h2>
-                    <p class="text-stone-500 text-xs sm:text-sm">Authentic stories from guests across Lagos, the UK, USA, and beyond.</p>
+                    <p class="text-stone-500 text-xs sm:text-sm">Authentic stories from guests across London, the UK, and beyond.</p>
                 </div>
                 <div class="flex items-center gap-3 shrink-0">
                     <button 
@@ -551,7 +551,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Location</label>
-                            <input type="text" name="customer_location" placeholder="e.g. Victoria Island, Lagos" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                            <input type="text" name="customer_location" placeholder="e.g. Bexley, Greenwich, or South London" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
                         </div>
                     </div>
 

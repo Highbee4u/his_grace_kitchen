@@ -362,7 +362,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">Location</label>
-                            <input type="text" name="customer_location" placeholder="e.g. Lekki, Lagos" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
+                            <input type="text" name="customer_location" placeholder="e.g. Bexley or South London" class="w-full rounded-xl border-stone-300 text-xs py-2 px-3 focus:border-[#0D4A2B] focus:ring-[#0D4A2B]">
                         </div>
                     </div>
 

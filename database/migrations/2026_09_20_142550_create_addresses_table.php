@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('address_line');
             $table->string('city');
             $table->string('state')->nullable();
-            $table->string('country')->default('Nigeria');
+            $table->string('country')->default('United Kingdom');
             $table->boolean('is_default')->default(false);
             $table->timestamps();
         });

@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @section('title', 'Create your account | Nigerian Kitchen')
+    @section('title', 'Create your account | His Grace Kitchen')
 
     <div class="mb-8">
         <span class="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-600">Join the table</span>

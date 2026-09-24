@@ -168,7 +168,7 @@
                                     id="customer_phone" 
                                     value="{{ old('customer_phone') }}"
                                     required 
-                                    placeholder="+234 802 987 6543 or international phone"
+                                    placeholder="07988 575 682 or 07508 282 876"
                                     class="w-full rounded-xl border-stone-300 focus:border-[#0D4A2B] focus:ring-[#0D4A2B] text-sm py-3"
                                 >
                             </div>

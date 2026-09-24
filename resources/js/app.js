@@ -3,20 +3,20 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 
 Alpine.store('currency', {
-    selected: localStorage.getItem('nk_currency') || 'NGN',
+    selected: localStorage.getItem('nk_currency') || 'GBP',
     rates: {
-        NGN: 1,
-        GBP: 0.00055,
+        GBP: 1,
+        NGN: 1850,
         USD: 0.00067,
         CAD: 0.00091,
         EUR: 0.00062
     },
     symbols: {
-        NGN: '₦',
         GBP: '£',
         USD: '$',
         CAD: 'CA$',
-        EUR: '€'
+        EUR: '€',
+        NGN: '₦'
     },
     setCurrency(curr) {
         this.selected = curr;

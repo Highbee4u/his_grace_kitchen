@@ -1,7 +1,7 @@
 @extends('layouts.storefront')
 
-@section('title', 'Authentic Nigerian Event Catering & Diaspora Banquets | His Grace Kitchen LTD')
-@section('meta_description', 'Full-service Nigerian event catering for weddings, corporate galas, and family gatherings. Featuring live Suya BBQ stations, rich soup bars, and international chilled air-cargo banquets.')
+@section('title', 'Authentic Nigerian Event Catering in London | His Grace Kitchen')
+@section('meta_description', 'Full-service Nigerian event catering in London for weddings, corporate galas, and family gatherings, with live Suya BBQ stations and rich soup bars.')
 
 @push('json_ld')
     {!! \App\Support\SeoHelper::render(\App\Support\SeoHelper::breadcrumbSchema([
@@ -248,7 +248,7 @@
                                 id="customer_phone" 
                                 value="{{ old('customer_phone') }}"
                                 required 
-                                placeholder="+234 803 123 4567 or +44 7911..."
+                                placeholder="07988 575 682 or 07508 282 876"
                                 class="w-full rounded-xl border-stone-300 focus:border-[#0D4A2B] focus:ring-[#0D4A2B] text-sm py-3"
                             >
                         </div>
@@ -319,7 +319,7 @@
                             id="venue" 
                             value="{{ old('venue') }}"
                             required 
-                            placeholder="e.g. Landmark Centre, Water Corporation Drive, VI, Lagos (or London, UK address)"
+                            placeholder="e.g. venue name and address in London or across the UK"
                             class="w-full rounded-xl border-stone-300 focus:border-[#0D4A2B] focus:ring-[#0D4A2B] text-sm py-3"
                         >
                     </div>

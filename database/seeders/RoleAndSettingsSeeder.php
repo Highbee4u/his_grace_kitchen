@@ -54,14 +54,15 @@ class RoleAndSettingsSeeder extends Seeder
 
         // 5. System Settings
         $settings = [
-            'business_name' => 'His Grace Kitchen LTD',
-            'site_name' => 'His Grace Kitchen LTD',
-            'base_currency' => 'NGN',
-            'display_currencies' => ['NGN', 'GBP', 'USD', 'CAD', 'EUR'],
-            'whatsapp_number' => '+2348031234567',
-            'phone' => '+234 803 123 4567',
-            'contact_email' => 'orders@africankitchen.test',
-            'address' => '14 Admiralty Way, Lekki Phase 1, Lagos, Nigeria',
+            'business_name' => 'His Grace Kitchen',
+            'site_name' => 'His Grace Kitchen',
+            'base_currency' => 'GBP',
+            'display_currencies' => ['GBP', 'USD', 'EUR', 'CAD', 'NGN'],
+            'whatsapp_number' => '+447988575682',
+            'phone' => '07988575682 / 07508282876',
+            'contact_email' => 'gracekitchenltd@gmail.com',
+            'instagram_handle' => '@gracekitchenltd',
+            'address' => 'Unit 15 Kencot Close, Business Park Kencot Way, DA18 4AB, London, UK',
             'tax_rate' => 0,
             'pay_on_delivery_enabled' => true,
             'diaspora_air_cargo_enabled' => true,
